@@ -1,0 +1,60 @@
+body {
+  background: #fdfdfd; }
+
+.top-panel {
+  background: #fff;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ddd; }
+
+.blue {
+  background: #2594ff;
+  color: #fff;
+  font-weight: bold; }
+
+label {
+  font-weight: bold; }
+
+.dobStudent_1 {
+  padding-bottom: 10px; }
+
+.dobStudent_1 + .pib_2 {
+  border-top: 2px solid #8cc6ff;
+  padding-top: 15px; }
+
+.list-sub-block {
+  background: #fff;
+  padding: 10px 20px; }
+  .list-sub-block button {
+    width: 100%; }
+
+.bull {
+  width: 12px;
+  height: 12px;
+  background: red;
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid #f10707; }
+
+.alert-empty {
+  color: #bfbfbf;
+  background-color: #fcfcfc;
+  border-color: #eaeaea; }
+
+.collaps {
+  background: #ffd965;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer; }
+  .collaps input[type=checkbox] {
+    display: none; }
+
+.parent-block {
+  padding: 10px 25px;
+  background: #eee;
+  margin: 0 10px; }
+
+.mb0 {
+  margin-bottom: 0; }

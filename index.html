@@ -3,8 +3,92 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Git index</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+	<div id="app" class="container-fluid">
+		<div class="top-panel ">
+			<div class="row ">
+				<div class="col-8"> 
+					<span><b>Start:</b> 12-06-2019</span>
+					<span>ZADOROZHNA </span>
+				</div>
+				<div class="col-4">
+					<a href="#">Settings</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<div class="list-group">
+				  <a href="#" class="list-group-item list-group-item-action active">
+				    Основна анкета
+				  </a>
+				  <div class="list-sub-block">
+				  	<p><span class="bull"></span> Редагування ...</p>
+				  	<button type="button" class="btn btn-success" disabled="">Зберегти</button>
+				  	
+				  </div>
+				  <a href="#" class="list-group-item list-group-item-action">Візова анкета</a>
+				  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Disabled</a>
+				</div>
+			</div><!-- col-3 -->
+			<div class="col-9">
+				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert">{{ alertMsg }}</div>
+				<div class="row">
+				<div class="col-6">
+					<div class="card">
+					  <div class="card-header blue">
+					    Анкета студента
+					  </div>
+					  <div class="card-body">
+						<div :class="['form-group ',item.key]" v-for="item in studentAppFields" :key="item.key">
+							<label>{{ item.label }}</label>
+							<input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
+						</div>
+						<p class="text-right"><a href="#" @click="addSet('student')" v-if="number.student<2">Додати ще одного студента</a> </p> 
+					  </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="card">
+					  <div class="card-header">
+					    Додаткова інформація
+					  </div>
+					  <div class="card-body">
+					  	<div class="form-group">
+						  	<label>Сімейний стан</label>	
+						  	<select class="form-control">
+						  		<option value="">Неодружений (незаміжня)</option>
+						  		<option value="">Одружений(заміжня)</option>
+						  		<option value="">У розводі</option>
+						  		<option value="">Вдівець (вдова) </option>
+						  	</select>
+					  	</div>
+					  	<div class="form-group hide-group">
+					  		<label :class="['mb0 collaps',{'collapsed':parentForm}]">Додати інформацію про батьків
+					  			<input type="checkbox" v-model="parentForm">
+					  		</label>
+					  		<div class="parent-block" v-if="parentForm">
+					  			<div :class="['form-group ',item.key]" v-for="item in parentAppFields" :key="item.key">
+									<label>{{ item.label }}</label>
+									<input type="text" class="form-control" v-model="parentAppAnswers[item.key]">
+								</div>
+								<p class="text-right"><a href="#" @click="addSet('parent')" v-if="number.parent<2">Додати ще</a> </p> 					  			
+					  		</div>
+					  	</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
 	
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>	
+<script src="js/scripts.js"></script>
 </body>
 </html>
+
