@@ -39,7 +39,7 @@
 				  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Disabled</a>
 				</div>
 			</div><!-- col-3 -->
-			<div class="col-9">
+			<div class="col-9" v-if="access">
 				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert"><i class="fas fa-info-circle"></i> {{ alertMsg }}</div>
 				<div class="row">
 				<div class="col-6">
@@ -87,7 +87,22 @@
 					</div>
 				</div>
 			</div>
-			</div>
+			</div><!-- col-9 -->
+			<div class="col-9" v-if="!access">
+				<div class="card">
+				  <div class="card-header">
+				    Dхід
+				  </div>
+				  <div class="card-body">
+				    <h5 class="card-title">Вітаю!</h5>
+				    <p class="card-text">Для продовження введіть свій рік народження:</p>
+				    <div class="form-group" >
+							<input type="text" class="form-control" @input="checkPass($event.target.value)">
+						</div>
+				  </div>
+				</div>
+
+			</div><!-- col-9 -->
 		</div>
 	</div>
 	

@@ -22,6 +22,8 @@ var vm = new Vue({
     		['email','E-mail']
     	],
     	parentForm: false,
+    	access: false,
+    	pass: '1992',
     	studentAppAnswers: {},
     	studentStatus: 0,
     	parentAppAnswers: {},
@@ -43,6 +45,15 @@ var vm = new Vue({
 		// setTimeout(function(){this.setActive()},5000)
 	},
 	methods: {
+		checkPass(value) {
+			// console.log();
+			if(value === this.pass) {
+				console.log('guess')
+				this.access = true;
+			}
+
+		},
+
 		addSet(key) {
 	      let num = ++this.number[key]; 
 	      let fieldsArr = key + 'AppFields';
