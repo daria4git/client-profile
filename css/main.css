@@ -85,3 +85,10 @@ label {
     color: #2594ff; }
     .btn-res.active:hover {
       color: #000; }
+
+.navig {
+  background: #eee; }
+  .navig a {
+    color: #000; }
+  .navig a.active {
+    color: #2594ff; }
