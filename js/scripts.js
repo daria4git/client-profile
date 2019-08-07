@@ -2,7 +2,6 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		alertMsg: 'Немає повідомлень',
-		// alertMsg: 'Заповніть спочатку анктеу студента і потім, за потреби, додайте інформацію про батьків',
 		alertMsgClass: 0,
 		alertClasses: ['alert-empty','alert-primary',' alert-warning', ' alert-info', ' alert-success'],
 		studentAppFields: [  /*{key:'pib_i',label:''}*/  ],
@@ -14,6 +13,9 @@ var vm = new Vue({
 	        ['homeAddress','Домашня адреса'],
 	        ['dobStudent','Дата народження']
     	],
+    	isDisabledStudentSaveBtn: true,
+    	activeSend: false,
+    	studentAppProces: 0,
     	parentSet: [
     		['pib','Прізвище та Ім\'я'],
     		['tel','Телефон'],
@@ -21,21 +23,30 @@ var vm = new Vue({
     	],
     	parentForm: false,
     	studentAppAnswers: {},
+    	studentStatus: 0,
     	parentAppAnswers: {},
     	number: {
     		student: 0,
     		parent: 0
-    	}  
+    	} ,
+	},
+	computed: {
+		//не работает
+		btn: function(){
+			// return this.studentAppAnswers['pib_1']
+		}
 	},
 	created: function () {
 		this.addSet('student');
 		this.addSet('parent');
+		//неработает
+		// setTimeout(function(){this.setActive()},5000)
 	},
 	methods: {
 		addSet(key) {
 	      let num = ++this.number[key]; 
 	      let fieldsArr = key + 'AppFields';
-	      let answersObj = key+'AppAnswers';
+	      let answersObj = key+ 'AppAnswers';
 	      let setOffields = key+'Set';
 	      let newIndex = this[fieldsArr].length;
 	      let fields = this[setOffields];
@@ -47,7 +58,60 @@ var vm = new Vue({
 	        newIndex++;
 	        this[answersObj][fields[i][0]+'_'+num] = null;
 	      }
+	    },
+	    setActive: function(){
+	    	this.isDisabledStudentSaveBtn = false
+	    },
+	    saveToLS: function() {
+	    	this.activeSend=true;
+
+	    	let jsn = JSON.stringify(this.studentAppAnswers);
+  			localStorage.setItem('studentAppAnswers', jsn);
+	    	jsn = JSON.stringify(this.studentAppFields);
+  			localStorage.setItem('studentAppFields', jsn);
+
+	    	jsn = JSON.stringify(this.parentAppAnswers);
+  			localStorage.setItem('parentAppAnswers', jsn);
+
+	    	jsn = JSON.stringify(this.parentAppFields);
+  			localStorage.setItem('parentAppFields', jsn);
+
+  			localStorage.setItem('studentStatus', this.studentStatus);
+  			localStorage.setItem('parentForm', this.parentForm);
+  			this.alertMsg = "Ви щойно зберегли анктеу на власному компьютері. Щоб ми її побачили - натисніть 'Надіслати в EduSteps'"
+			this.alertMsgClass = 3
 	    }
 
 	}
-})
+});
+setTimeout(function(){
+vm.isDisabledStudentSaveBtn = false
+},5000);
+if(localStorage.getItem('studentAppFields')) {
+	var jsnStr = localStorage.getItem('studentAppFields');
+	var oldAnswers = JSON.parse(jsnStr);
+	vm.studentAppFields = oldAnswers;
+}
+if(localStorage.getItem('studentAppAnswers')) {
+	var jsnStr = localStorage.getItem('studentAppAnswers');
+	var oldAnswers = JSON.parse(jsnStr);
+	vm.studentAppAnswers = oldAnswers;
+}
+if(localStorage.getItem('parentAppFields')) {
+	var jsnStr = localStorage.getItem('parentAppFields');
+	var oldAnswers = JSON.parse(jsnStr);
+	vm.parentAppFields = oldAnswers;
+}
+if(localStorage.getItem('parentAppAnswers')) {
+	var jsnStr = localStorage.getItem('parentAppAnswers');
+	var oldAnswers = JSON.parse(jsnStr);
+	vm.parentAppAnswers = oldAnswers;
+}
+if(localStorage.getItem('studentStatus')) {
+	let status = localStorage.getItem('studentStatus');
+	vm.studentStatus = parseInt(status);
+}
+if(localStorage.getItem('parentForm')) {
+	let status = localStorage.getItem('parentForm');
+	vm.parentForm = !!status;
+}

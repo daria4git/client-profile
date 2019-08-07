@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Git index</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="css/all.css" rel="stylesheet"> 
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -12,8 +13,7 @@
 		<div class="top-panel ">
 			<div class="row ">
 				<div class="col-8"> 
-					<span><b>Start:</b> 12-06-2019</span>
-					<span>ZADOROZHNA </span>
+					
 				</div>
 				<div class="col-4">
 					<a href="#">Settings</a>
@@ -22,13 +22,17 @@
 		</div>
 		<div class="row">
 			<div class="col-3">
+				<div class="alert alert-empty" role="alert"><span><i class="fas fa-calendar-alt"></i> 12-06-2019</span>
+					<b>ZADOROZHNA </b></div>
 				<div class="list-group">
 				  <a href="#" class="list-group-item list-group-item-action active">
 				    Основна анкета
 				  </a>
 				  <div class="list-sub-block">
-				  	<p><span class="bull"></span> Редагування ...</p>
-				  	<button type="button" class="btn btn-success" disabled="">Зберегти</button>
+				  	<br>
+				  	<button type="button" class="btn btn-success" :disabled="isDisabledStudentSaveBtn" @click="saveToLS">Зберегти</button>
+				  	<br>
+				  	<button type="button" :class="['btn-res',{'active':activeSend}]" :disabled="!activeSend">Надіслати в EDUSTEPS</button>
 				  	
 				  </div>
 				  <a href="#" class="list-group-item list-group-item-action">Візова анкета</a>
@@ -36,7 +40,7 @@
 				</div>
 			</div><!-- col-3 -->
 			<div class="col-9">
-				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert">{{ alertMsg }}</div>
+				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert"><i class="fas fa-info-circle"></i> {{ alertMsg }}</div>
 				<div class="row">
 				<div class="col-6">
 					<div class="card">
@@ -60,15 +64,15 @@
 					  <div class="card-body">
 					  	<div class="form-group">
 						  	<label>Сімейний стан</label>	
-						  	<select class="form-control">
-						  		<option value="">Неодружений (незаміжня)</option>
-						  		<option value="">Одружений(заміжня)</option>
-						  		<option value="">У розводі</option>
-						  		<option value="">Вдівець (вдова) </option>
+						  	<select class="form-control" v-model="studentStatus">
+						  		<option value="0">Неодружений (незаміжня)</option>
+						  		<option value="1">Одружений(заміжня)</option>
+						  		<option value="2">У розводі</option>
+						  		<option value="3">Вдівець (вдова) </option>
 						  	</select>
 					  	</div>
 					  	<div class="form-group hide-group">
-					  		<label :class="['mb0 collaps',{'collapsed':parentForm}]">Додати інформацію про батьків
+					  		<label :class="['mb0 collaps',{'collapsed':parentForm}]"><span>Додати інформацію про батьків</span> <i class="fas fa-plus-circle"></i>
 					  			<input type="checkbox" v-model="parentForm">
 					  		</label>
 					  		<div class="parent-block" v-if="parentForm">
