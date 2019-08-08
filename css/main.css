@@ -92,3 +92,21 @@ label {
     color: #000; }
   .navig a.active {
     color: #2594ff; }
+
+.myBtn {
+  width: 27px;
+  height: 27px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  background: #eee;
+  border-radius: 50%;
+  text-align: center; }
+  .myBtn i {
+    color: #333; }
+  .myBtn:hover {
+    background: #2594ff; }
+    .myBtn:hover i {
+      color: #fff; }
+
+.alert ul {
+  margin: 0; }

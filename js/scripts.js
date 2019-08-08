@@ -89,8 +89,11 @@ var vm = new Vue({
 
   			localStorage.setItem('studentStatus', this.studentStatus);
   			localStorage.setItem('parentForm', this.parentForm);
-  			this.alertMsg = "Ви щойно зберегли анктеу на власному компьютері. Щоб ми її побачили - натисніть 'Надіслати в EduSteps'"
+  			this.alertMsg = "Ви щойно зберегли анктеу в цьому браузері. Щоб ми її побачили - натисніть 'Надіслати в EduSteps'"
 			this.alertMsgClass = 3
+	    },
+	    sendToEdusteps: function(){
+	    	
 	    }
 
 	}

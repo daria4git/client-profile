@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CRM new</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="css/all.css" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-right"><br>TOP panel</div><br></div>
+		</div>
+	</div>
+	<div class="navig">
+	<div class="container">
+		<div class="row">
+			<div class="col-6"><nav class="nav">
+  <a class="nav-link" href="#">Главная</a>
+  <a class="nav-link" href="#">Список дел</a>
+  <a class="nav-link" href="#">Запросы</a>
+  <a class="nav-link" href="#">Контакты</a>
+  <a class="nav-link active" href="#">АНКЕТЫ</a>
+</nav></div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+	</div>
+	<div class="container"><br><br>
+		<div class="row" id="app">
+      <div class="col-12"><div class="alert alert-primary" role="alert">
+        <ul>
+          <li>{{ user.surname }}</li>
+        </ul>
+      </div></div>
+			<div class="col-6">
+        <div >
+          <template v-for="item in numS">
+          <p>Анкета студента</p>
+          <ul>
+            <li v-for="(value, name) in fields"><b>{{studentSet[name.slice(0, name.indexOf('_'))] }}</b> <span>{{ value }}</span> </li>
+          </ul>
+          </template>
+          <!-- <template v-for="item in numP"> -->
+          <p>Родители:</p>
+          <ul>
+            <li v-for="(value, name) in fieldsParent"><b>{{studentSet[name.slice(0, name.indexOf('_'))] }}</b> <span>{{ value }}</span> </li>
+          </ul>
+          <!-- </template> -->
+        </div>
+			</div>
+      <div class="col-6">
+        <table class="table table-bordered">
+          <tr class="title">
+            <td colspan="2">Управление:</td>
+          </tr>
+            <tr><td colspan="2"><ul>
+              <li><a href="#">Редактировать</a></li>
+              <li><a href="#">Создать папку на Google Drive</a></li>
+              <li><a href="#">Удалить</a></li>
+            </ul>
+            </td>
+          </tr>
+          <tr class="title">
+            <td  colspan="2">Добавить в CRM:</td>
+            </tr>
+            <tr><td>
+              <label><input type="checkbox" checked="" disabled=""> Добавить в CRM студента</label>
+              <label v-for="item in numP"><input type="checkbox"> Добавить в CRM родителя ({{ item }})</label>
+            </td>
+            <td>
+              <button type="button">Добавить</button>
+           
+            </td>
+          </tr>
+<tr class="title">
+            <td  colspan="2">Анкета для визы</td>
+            </tr>
+<tr>
+            <td  colspan="2">
+            <ul>
+              <li><a href="#">Сформировать</a></li>
+              <li><a href="#">Просмотреть</a></li>
+              <li><a href="#">Удалить</a></li>
+            </ul></td>
+            </tr>
+         
+        </table>
+        
+        
+      </div>
+    </div>
+	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> 
+
+<script>
+  //database;
+  //app1 - первичная анкета
+  //app2 - визовая анкета
+  var applications = [ {},
+    { id: 1, 
+      surname: 'Ivanov',
+      year: 1997, 
+      app1Status: 'completed', 
+      app2Status: 'close', 
+      numS: 1, 
+      numP: 2, 
+      students: '{"pib_1":"Иванов Василий","tel_1":"0123456789","email_1":"vaasia@gmail.com","homeAddress_1":"Kyiv","dobStudent_1":"01-01-1997"}',
+      parents:'{"pib_1":"Иванова Ксения","tel_1":"0987654321","email_1":"kse@gmail.com","pib_2":"Иванов Олег","tel_2":"0246897531","email_2":""}',
+      inCRM: false,
+      driveSetUp: false,
+      StudentVisa: false
+    },
+  ];
+
+  var vm = new Vue({
+  el: '#app',
+  data: {
+    user: applications[1],
+    studentSet: {
+          'pib':'Прізвище та Ім\'я',
+          'tel':'Телефон',
+          'email':'E-mail',
+          'homeAddress':'Домашня адреса',
+          'dobStudent':'Дата народження',
+          },
+  },
+  computed: {
+    numS(){
+      return this.user.numS
+    },
+    fields() {
+      return JSON.parse(this.user.students)
+    },
+    numP(){
+      return this.user.numP
+    },
+    fieldsParent() {
+      return JSON.parse(this.user.parents)
+    }
+
+  }
+  
+  });
+
+
+</script>	
+</body>
+</html>
