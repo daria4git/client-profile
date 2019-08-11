@@ -10,7 +10,7 @@
 <body>
 
 	<div id="app" class="container-fluid">
-		<div class="top-panel ">
+		<div class="custom-alert ">
 			<div class="row ">
 				<div class="col-8"> 
 					
@@ -23,8 +23,8 @@
 		<div class="row">
 			<div class="col-3">
 				<div class="alert alert-empty" role="alert">
-					<b>ZADOROZHNA </b></div>
-				<div class="list-group">
+					<b class="username">{{ username }} </b></div>
+				<div :class="['list-group preload',{'preloadEnd':listGroupLoad}]">
 				  <a href="#" class="list-group-item list-group-item-action active">
 				    Основна анкета
 				  </a>
@@ -39,7 +39,7 @@
 				  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Disabled</a>
 				</div>
 			</div><!-- col-3 -->
-			<div class="col-9" v-if="access">
+			<div class="col-9" v-if="mainContentLoad">
 				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert"><i class="fas fa-info-circle"></i> {{ alertMsg }}</div>
 				<div class="row">
 				<div class="col-6">
@@ -88,16 +88,16 @@
 				</div>
 			</div>
 			</div><!-- col-9 -->
-			<div class="col-9" v-if="!access">
+			<div class="col-9" v-else>
 				<div class="card">
 				  <div class="card-header">
 				    Dхід
 				  </div>
 				  <div class="card-body">
 				    <h5 class="card-title">Вітаю!</h5>
-				    <p class="card-text">Для продовження введіть свій рік народження:</p>
+				    <p class="card-text">Для продовження введіть пароль (або свій рік народження):</p>
 				    <div class="form-group" >
-							<input type="text" class="form-control" @input="checkPass($event.target.value)">
+							<input type="text" class="form-control" maxlength="4" @input="checkPass($event.target.value)">
 						</div>
 				  </div>
 				</div>

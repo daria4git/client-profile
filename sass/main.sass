@@ -1,6 +1,8 @@
 body 
 	background: #fdfdfd
-.top-panel
+.mb0
+	margin-bottom: 0
+.custom-alert
 	background: #fff
 	padding: 15px 20px
 	margin: 10px 0
@@ -20,18 +22,8 @@ label
 .list-sub-block
 	background: #fff
 	padding: 10px 20px
-	// text-align: center
 	button 
-		// width: 100px
-		// margin: auto
 		margin-bottom: 15px
-.bull
-	width: 12px
-	height: 12px
-	background: red
-	display: inline-block
-	border-radius: 50%
-	border: 2px solid #f10707
 .alert-empty
 	color: #bfbfbf
 	background-color: #fcfcfc
@@ -59,8 +51,6 @@ label
 .email_1 + .pib_2
 	border-top: 1px solid #c3c3c3
 	padding-top: 15px
-.mb0
-	margin-bottom: 0
 
 .btn-res
 	background: none
@@ -83,23 +73,89 @@ label
 		color: #000
 	a.active
 		color: #2594ff
-.myBtn
-	width: 27px
-	height: 27px
-	border: 1px solid #ddd
-	display: inline-block
-	background: #eee
-	border-radius: 50%
-	text-align: center
-	i
-		color: #333
-	&:hover
-		background: #2594ff
-		i
-			color: #fff
-// tr td:last-child
-// 	display: flex
-// 	justify-content: space-between
+
 .alert
 	ul 
 		margin: 0
+.username
+	text-transform: uppercase
+//preloader
+.preload
+	position: relative
+.preload:not(.preloadEnd):after, .preload:not(.preloadEnd):before 
+	display: block
+	content: ""
+	position: absolute
+.preload:before 
+	height: 100%
+	background: #fdfdfd
+	width: 100%
+	z-index: 9999
+	border: 1px solid #ddd
+.preload:not(.preloadEnd):after
+	content: "\f110"
+	content: "\f14e"
+	content: "\f51f"
+	color: #00bcda
+	top: 36%
+	left: 40%
+	z-index: 99999
+	font-family: "Font Awesome 5 Free"
+	font-weight: bold
+	font-size: 60px
+	animation: infinite-spinning 3s infinite
+
+@keyframes infinite-spinning
+		0%
+			transform: rotate(0deg)
+		100%
+			transform: rotate(360deg)
+
+.radio-toggles
+	display: flex
+	margin-bottom: 15px
+	&>div 
+		width: 50%
+		background: #eee
+		padding: 5px 5px 0 10px
+		&:hover
+			background: #ddd
+		input
+			display: none
+		label
+			cursor: pointer
+			font-weight: normal
+		&.active
+			background: #2594ff
+			color: #fff
+			label
+				font-weight: bold
+.active-mode
+	tr.active
+		background: #dceeff
+.lbl-blck
+	display: block
+.hidden-span
+	width: 1px
+	overflow: hidden
+	display: block
+	height: 1px
+.table-tools
+	ul 
+		-webkit-padding-start: 0
+		li 
+			display: inline-block
+			margin-right: 25px
+			color: #ddd
+			a
+				text-decoration: underline
+				&.del
+					color: red
+				&.view
+					color: green
+.horizontal-nav
+	-webkit-padding-start: 0
+	li
+		display: inline-block
+		text-transform: uppercase
+		margin-right: 15px

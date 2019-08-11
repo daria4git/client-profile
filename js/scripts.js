@@ -1,3 +1,8 @@
+var code = 'MXxTaGV2Y2hlbmtvfDIwMDI=';
+var parseCode = atob(code);
+var arrCode = parseCode.split("|");
+console.log(arrCode);
+
 var vm = new Vue({
 	el: '#app',
 	data: {
@@ -22,8 +27,10 @@ var vm = new Vue({
     		['email','E-mail']
     	],
     	parentForm: false,
-    	access: false,
-    	pass: '1992',
+    	mainContentLoad: false,
+    	pass:  arrCode[2],
+    	username: arrCode[1],
+    	listGroupLoad: false,
     	studentAppAnswers: {},
     	studentStatus: 0,
     	parentAppAnswers: {},
@@ -43,13 +50,15 @@ var vm = new Vue({
 		this.addSet('parent');
 		//неработает
 		// setTimeout(function(){this.setActive()},5000)
+		
 	},
 	methods: {
 		checkPass(value) {
 			// console.log();
 			if(value === this.pass) {
 				console.log('guess')
-				this.access = true;
+				this.mainContentLoad = true;
+				this.listGroupLoad = true
 			}
 
 		},
@@ -61,6 +70,7 @@ var vm = new Vue({
 	      let setOffields = key+'Set';
 	      let newIndex = this[fieldsArr].length;
 	      let fields = this[setOffields];
+	      // debugger;
 	      for (var i = 0; i < fields.length; i++) {
 	        Vue.set(this[fieldsArr], newIndex , 
 	          { key: fields[i][0]+'_'+num, 

@@ -29,46 +29,74 @@
 	</div>
 	</div>
 	<div class="container"><br><br>
-		<div class="row">
-			<div class="col-1"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#appAddContact">
-  Launch demo modal
-</button></div>
-			<div class="col-9">
-        <div class="control">
-          <a href="#">Создать анкету</a>
-        </div>
-        <br>
-				<table class="table table-bordered">
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><i class="fa-star fas"></i> Анкеты</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile"><i class="fa-star fas"></i> Текущие</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Потенциальные</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Клиенты</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list2" data-toggle="list" href="#list-settings2" role="tab" aria-controls="settings">ЛидЫ</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade " id="list-home-1" role="tabpanel" aria-labelledby="list-home-list">последние открытые</div>
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list" >
+        <table class="table table-bordered active-mode">
           <thead>
             <tr>
+              <th scope="col"></th>
               <th scope="col">#</th>
               <th scope="col">Surname</th>
               <th scope="col">Year of Birth</th>
               <th scope="col">Status</th>
-              <th scope="col">Link</th>
+              <th scope="col">Link <i class="fas fa-external-link-alt"></i></th>
               <th scope="col"></th>
-              <th scope="col">Control</th>
             </tr>
           </thead>
           <tbody>
-    <tr>
-  <th scope="row">1</th>
-  <td>Ivanov</td>
-  <td>1992</td>
-  <td>Incomplete</td>
-  <td><a href="http://apply.edusteps.com.ua/applications/MXxJdmFub252fDE5OTc=">MXxJdmFub252fDE5OTc=</a></td>
-  <td><a href="#"><i class="fas fa-copy"></i></a> </td>
-  <td>
-    <a href="#" class="myBtn"><i class="fas fa-eye"></i></a> 
-    <a href="#" class="myBtn"><i class="fab fa-google-drive"></i></a>
-    <a href="#" class="myBtn"><i class="fas fa-times"></i></a> 
-  </td>
-</tr>
+            <tr v-for="item in tableRows" :class="{'active':handlerRowItem===item.id}">
+              <th scope="row"><input type="radio" name="handlerRowItem" :value='item.id' v-model="handlerRowItem"></th>
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.surname}}</td>
+              <td>{{item.password}}</td>
+              <td>{{item.status}}</td>
+              <td><a :href="'http://apply.edusteps.com.ua/applications/'+item.code" >{{item.code}}</a>
+                <span class="hidden-span" :id="'link-'+item.id">{{'http://apply.edusteps.com.ua/applications/'+item.code}}</span></td>
+              <td><a href="#" @click="copyToClip('link-'+item.id)"><i class="fas fa-copy"></i></a> </td>
 
+            </tr>
         </tbody>
       </table>
-			</div>
-		</div>
+      <template v-if="handlerRowItem">
+      <div class="table-tools">
+        <ul>
+           <li><b>Управление:</b></li>
+          <li><a href="#" class="view" :data-id="handlerRowItem">Открыть в CRM</a></li>
+          <li><a href="#" class="del" :data-id="handlerRowItem">Удалить</a></li>
+          <li class="last"><a href="#" @click="handlerRowItem = null">Отменить выделение</a></li>
+        </ul>
+      </div>
+      </template>
+      <template v-else>
+      <div class="table-tools no-active">
+        <ul>
+          <li><b>Управление:</b></li>
+          <li>Открыть в CRM</li>
+          <li>Удалить </li>
+          <li class="last">Отменить выделение </li>
+        </ul>
+      </div>
+      </template>
+      </div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+      <div class="tab-pane fade" id="list-settings2" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+    </div>
+  </div>
+</div>
 	</div>
 	<!-- Button trigger modal -->
 
@@ -152,6 +180,38 @@
     el: '#appAddContact',
     data: {
       typeForm: 'crm',
+    }
+  });
+  var db = [
+    { id: 1,
+      surname: 'Shevchenko',
+      password: '2002',
+      status: 'Incomplete',
+      code: 'MXxTaGV2Y2hlbmtvfDIwMDI='},
+    { id: 2,
+      surname: 'Franko',
+      password: '2000',
+      status: 'Incomplete',
+      code: 'MnxGcmFua298MjAwMA=='},
+    ]
+  var vm2 = new Vue({
+    el: '#list-home',
+    data: {
+      handlerRowItem: null,
+      tableRows: db,
+    },
+    methods: {
+      copyToClip(id){
+var ta = document.getElementById(id);
+var range = document.createRange(); 
+  range.selectNode(ta); 
+  window.getSelection().addRange(range); 
+    try { 
+    document.execCommand('copy'); 
+  } catch(err) { 
+    alert('Не получилось'); 
+  }   window.getSelection().removeAllRanges();      
+      }
     }
   })
 </script>
