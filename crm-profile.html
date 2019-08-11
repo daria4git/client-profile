@@ -33,8 +33,12 @@
 		<div class="row">
     <div class="col-12">
       <ul class="profile-top">
-        <li>Students`s Surname Name</li>
-        <li><div><b>Тип:</b> <p>Клиент</p></div></li>
+        <li id="studentName"> <h5>Students`s Surname Name</h5></li>
+        <li id="studentTel"><i class="fas fa-phone-square-alt"></i> 0987654321</li>
+        <li id="studentEmail"><i class="fas fa-at"></i> student@gmail.com</li>
+        <li id="studentControl"><b>Тип:</b> <span>Клиент</span></li>
+        <li><b>Менеджер:</b> <span>Назнaчить</span></li>
+        <li><b>Текущий:</b> <span>Да</span></li>
       </ul>
     </div>  
   </div>
@@ -45,10 +49,10 @@
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">ToDo List</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Анкета</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -76,7 +80,19 @@
 </div>
     </div>
     <div class="col-4">
-      paretn
+      <div class="card">
+        <div class="card-header bg-warning bg-parents">Родители</div>
+        <div class="card-body">
+           <p class="text-right"><a href="#" @click="addSet('student')">Добавить</a> </p>
+      <template v-if="hasParent">
+        <div :class="['form-group ',item.key]" v-for="item in studentAppFields" :key="item.key">
+          <label>{{ item.label }}</label>
+          <input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
+        </div>
+      </template>
+        
+        </div>
+      </div>
     </div>  
     </div>
 	</div>
