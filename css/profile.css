@@ -35,4 +35,25 @@ ul {
 
 .bg-parents {
   padding-bottom: 7px;
-  padding-top: 9px; }
+  padding-top: 9px;
+  color: #fff; }
+
+#home .col-4 {
+  border-right: 1px solid #ddd; }
+
+#home h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #8b8b8b;
+  letter-spacing: 2px; }
+
+.history i {
+  font-size: 12px;
+  margin-top: -2px;
+  display: inline-block; }
+
+.ul-title {
+  margin-bottom: 0; }
+  .ul-title a > i {
+    margin-left: 15px; }

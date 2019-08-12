@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Git index</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="css/all.css" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+	<div id="app" 
+	:class="['container-fluid apply-app']">
+		<div class="custom-alert ">
+			<div class="row ">
+				<div class="col-8"> <b>Кабінет клієнта</b> </div>
+				<div class="col-4">	</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<!-- МЕНЮ: -->
+			<div class="col-3">
+				<div class="alert alert-empty" role="alert">
+					<b class="username">{{ username }} </b>
+				</div>
+				<div :class="['list-group preload',{'preloadEnd':listGroupLoad}]">
+					<a href="#" 
+					   :class="['list-group-item list-group-item-action', {'active': generalAppShow, 'disabled': !generalApp} ]"
+					   @click="visaAppShow = false; generalAppShow = true ">
+						Основна анкета
+					</a>
+					<div class="list-sub-block">
+						<button type="button" class="btn btn-link" :disabled="!activeStudentAppSave" @click="saveToLS">Зберегти в браузері</button>
+						<button type="button" :class="['btn btn-success',{'active':activeStudentAppSend}]" :disabled="!activeStudentAppSend">Надіслати в EDUSTEPS</button>
+					</div>
+					<a href="#" 
+							:class="['list-group-item list-group-item-action', {'disabled':!visaApp, 'active': visaAppShow}]"
+							 @click="visaAppShow = true; generalAppShow = false "
+							 >Візова анкета</a>
+				</div><!-- list-group preload-->
+			</div><!-- col-3 -->
+			<!-- //МЕНЮ: -->
+
+			<!-- Основная анкета:  -->
+			<div class="col-9" v-if="generalAppShow && !authorization">
+				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert">
+					<i class="fas fa-info-circle"></i> {{ alertMsg }}
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<div class="card">
+							<div class="card-header blue">Анкета студента</div>
+							<div class="card-body">
+								<div :class="['form-group ',item.key]"
+											v-for="item in studentAppFields"
+											:key="item.key">
+											<label>{{ item.label }}</label>
+											<input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
+								</div>
+								<p class="text-right">
+									<a href="#" @click="addSet('student')" v-if="number.student<2">Додати ще одного студента</a>
+								</p> 
+							</div>
+						</div><!--// card -->
+					</div><!--// col-6 -->
+					<div class="col-6">
+						<div class="card">
+							<div class="card-header">Додаткова інформація</div>
+							<div class="card-body">
+								<div class="form-group">
+									<label>Сімейний стан</label>  
+									<select class="form-control" v-model="studentStatus">
+										<option value="0">Неодружений (незаміжня)</option>
+										<option value="1">Одружений(заміжня)</option>
+										<option value="2">У розводі</option>
+										<option value="3">Вдівець (вдова) </option>
+									</select>
+								</div>
+								<div class="form-group hide-group">
+									<label :class="['mb0 collaps',{'collapsed':parentForm}]">
+										<span>Додати інформацію про батьків</span> <i class="fas fa-plus-circle"></i>
+										<input type="checkbox" v-model="parentForm">
+									</label>
+									<div class="parent-block" v-if="parentForm">
+										<div :class="['form-group ',item.key]" 
+												 v-for="item in parentAppFields" 
+												 :key="item.key">
+												 <label>{{ item.label }}</label>
+												 <input type="text" class="form-control" v-model="parentAppAnswers[item.key]">
+										</div>
+										<p class="text-right">
+											<a href="#"
+												 @click="addSet('parent')"
+												 v-if="number.parent<2">
+												Додати ще
+											</a>
+										</p>
+									</div>
+								</div><!-- // form-group hide-group -->
+							</div>
+						</div><!-- // card -->
+					</div><!--// col-6 -->
+				</div><!--// row -->
+			</div><!--// col-9 -->
+			<!-- // Основная анкета:  -->
+
+			<!-- Визовая анкета:  -->
+			<div class="col-9" 
+					 v-if="visaAppShow && !authorization"
+					>
+				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert">
+					<i class="fas fa-info-circle"></i> {{ alertMsg }}
+				</div>
+				<div class="row">
+					<div class="col-8">	
+						<div class="card section sectionA" >
+							<div class="card-header">	{{sectionA.title}}
+								<i class="fas fa-plus-circle" 
+										v-if="sectionA.collapsed"
+										@click="sectionA.collapsed=false"></i>
+								<i class="fas fa-minus-circle" 
+										v-else @click="sectionA.collapsed=true" ></i>
+							</div>
+							<div :class="['card-body',{'collapsed': sectionA.collapsed}]">
+								<div :class="['form-group ',item.key]" 
+										 v-for="item in sectionA.fields" 
+										 :key="item.key">
+										 <template v-if="item.type==='text'">
+										 	<label>{{ item.label }}</label>
+										 	<input type="text" 
+										 				class="form-control" 
+										 				v-model="sectionA.answers[item.key]">
+										 	</template>
+										 	<template v-if="item.type==='checkbox'">
+										 		<label>
+										 		<input type="checkbox"
+										 					 :checked="item.checked"
+										 					 v-model="sectionA.answers[item.key]">
+										 		{{ item.label }} </label>
+										 	</template>
+										 	<template v-if="item.type==='conditionalreverse'">  <div class="form-group" v-if="!sectionA.answers[item.base]">
+										 		<label >
+										 		 	{{ item.label }} </label>
+											 		<input :type="item.input" 
+											 					class="form-control" 
+											 					:checked="item.checked"
+											 					v-model="sectionA.answers[item.key]">
+										 	</div>
+										 	</template>
+								</div>
+							</div>
+						</div>
+									<!-- //card sectionA -->
+						<div class="card section sectionB" >
+							<div class="card-header">	{{sectionB.title}}
+								<i class="fas fa-plus-circle" 
+										v-if="sectionB.collapsed"
+										@click="sectionB.collapsed=false"></i>
+								<i class="fas fa-minus-circle" 
+										v-else @click="sectionB.collapsed=true" ></i>
+							</div>
+							<div :class="['card-body',{'collapsed': sectionB.collapsed}]">
+								<div :class="['form-group ',item.key]" 
+										 v-for="item in sectionB.fields" 
+										 :key="item.key">
+
+										 <template v-if="item.type==='select'">
+										 	<label>{{ item.label }}</label>
+										 	<select v-model="sectionB.answers.marital"
+										 					class="form-control" >
+										 		<option v-for="(value, name) in item.options"
+										 				:value="name">{{value}}</option>
+										 	</select>
+										 	</template>
+
+										 	<template v-if="item.type==='conditionalNotEquel'">
+										 	  <div class="form-group" 
+										 	  		v-if="sectionB.answers[item.base] !== item.val">
+										 		<label >
+										 		 	{{ item.label }} </label>
+											 		<input :type="item.input" 
+											 					v-model="sectionB.answers[item.key]"
+											 					class="form-control" 
+											 					>
+										 	</div>
+										 	</template>
+
+										 <template v-if="item.type==='text'">
+										 	<label>{{ item.label }}</label>
+										 	<input type="text" 
+										 				class="form-control" 
+										 				v-model="sectionB.answers[item.key]">
+										 	</template>
+
+										 	<template v-if="item.type==='checkbox'">
+										 		<label>
+										 		<input type="checkbox"
+										 					 :checked="item.checked"
+										 					 v-model="sectionB.answers[item.key]"
+										 					 >
+										 		{{ item.label }} </label>
+										 	</template>
+
+
+										 	<template v-if="item.type==='conditionalreverse' && item.input==='group'">
+										 	  <div class="form-group" v-if="!sectionB.answers[item.base]">
+										 		<label >
+										 		 	{{ item.label }} </label>
+										 		 	<template v-for="(comp, index1) in item.num">
+										 		 		
+										 		 	<div v-for="(comp, index) in item.comps">
+										 		 		<label>{{ comp.label }}</label>
+													 	<input :type="comp.type" 
+													 				class="form-control" 
+													 				v-model="sectionB.answers[item.key][index1][comp.key+'_'+index1]"
+													 				>
+										 		 	</div>
+										 		 	</template>
+										 	</div>
+										 	</template>
+										 	
+								</div>
+							</div>
+						</div>	
+									<!-- //card sectionB -->
+
+						<div class="card section sectionC" >
+							<div class="card-header">	{{sectionC.title}}
+								<i class="fas fa-plus-circle" 
+										v-if="sectionC.collapsed"
+										@click="sectionC.collapsed=false"></i>
+								<i class="fas fa-minus-circle" 
+										v-else @click="sectionC.collapsed=true" ></i>
+							</div>
+							<div :class="['card-body',{'collapsed': sectionC.collapsed}]">
+								<div :class="['form-group ',item.key]" 
+										 v-for="item in sectionC.fields" 
+										 :key="item.key">
+										 <template v-if="item.type==='text'">
+										 	<label>{{ item.label }}</label>
+										 	<input type="text" 
+										 				class="form-control" 
+										 				v-model="sectionC.answers[item.key]">
+										 	</template>
+										 	<template v-if="item.type==='checkbox'">
+										 		<label>
+										 		<input type="checkbox"
+										 					 :checked="item.checked"
+										 					 v-model="sectionC.answers[item.key]">
+										 		{{ item.label }} </label>
+										 	</template>
+										 	<template v-if="item.type==='conditionalreverse'">  <div class="form-group" v-if="!sectionC.answers[item.base]">
+										 		<label >
+										 		 	{{ item.label }} </label>
+											 		<input :type="item.input" 
+											 					class="form-control" 
+											 					:checked="item.checked"
+											 					v-model="sectionC.answers[item.key]">
+										 	</div>
+										 	</template>
+								</div>
+							</div>
+						</div>
+									<!-- //card sectionC -->		
+
+						<div class="card section sectionD" >
+							<div class="card-header">	{{sectionD.title}}
+								<i class="fas fa-plus-circle" 
+										v-if="sectionD.collapsed"
+										@click="sectionD.collapsed=false"></i>
+								<i class="fas fa-minus-circle" 
+										v-else @click="sectionD.collapsed=true" ></i>
+							</div>
+							<div :class="['card-body',{'collapsed': sectionD.collapsed}]">
+								<div :class="['form-group ',item.key]" 
+										 v-for="item in sectionD.fields" 
+										 :key="item.key">
+										 <template v-if="item.type==='text'">
+										 	<label>{{ item.label }}</label>
+										 	<input type="text" 
+										 				class="form-control" 
+										 				v-model="sectionD.answers[item.key]">
+										 	</template>
+										 	<template v-if="item.type==='checkbox'">
+										 		<label>
+										 		<input type="checkbox"
+										 					 :checked="item.checked"
+										 					 v-model="sectionD.answers[item.key]">
+										 		{{ item.label }} </label>
+										 	</template>
+										 	<template v-if="item.type==='conditionalreverse'">  <div class="form-group" v-if="!sectionD.answers[item.base]">
+										 		<label >
+										 		 	{{ item.label }} </label>
+											 		<input :type="item.input" 
+											 					class="form-control" 
+											 					:checked="item.checked"
+											 					v-model="sectionD.answers[item.key]">
+										 	</div>
+										 	</template>
+								</div>
+							</div>
+						</div>
+									<!-- //card sectionD -->			
+
+						<div class="card section sectionE" >
+							<div class="card-header">	{{sectionE.title}}
+								<i class="fas fa-plus-circle" 
+										v-if="sectionE.collapsed"
+										@click="sectionE.collapsed=false"></i>
+								<i class="fas fa-minus-circle" 
+										v-else @click="sectionE.collapsed=true" ></i>
+							</div>
+							<div :class="['card-body',{'collapsed': sectionE.collapsed}]">
+								<div :class="['form-group ',item.key]" 
+										 v-for="item in sectionE.fields" 
+										 :key="item.key">
+										 <template v-if="item.type==='text'">
+										 	<label>{{ item.label }}</label>
+										 	<input type="text" 
+										 				class="form-control" 
+										 				v-model="sectionE.answers[item.key]">
+										 	</template>
+										 	<template v-if="item.type==='checkbox'">
+										 		<label>
+										 		<input type="checkbox"
+										 					 :checked="item.checked"
+										 					 v-model="sectionE.answers[item.key]">
+										 		{{ item.label }} </label>
+										 	</template>
+										 	<template v-if="item.type==='conditionalreverse' && item.input==='text'">  
+										 		<div class="form-group" v-if="!sectionE.answers[item.base]">
+										 			<label >
+										 		 	{{ item.label }} </label>
+											 		<input :type="item.input" 
+											 					class="form-control" 
+											 					v-model="sectionE.answers[item.key]">
+										 		</div>
+										 	</template>
+										 	<template v-if="item.type==='conditionalreverse' && item.input==='textarea'">  
+										 		<div class="form-group" v-if="!sectionE.answers[item.base]">
+										 			<label >
+										 		 	{{ item.label }} </label>
+											 		<textarea 
+											 					class="form-control" 
+											 					v-model="sectionE.answers[item.key]">
+											 				</textarea>
+										 		</div>
+										 	</template>
+								</div>
+							</div>
+						</div>
+									<!-- //card sectionE -->							
+					</div>
+					<!-- //col-8 -->
+					<div class="col-4"></div>
+				</div>			
+			</div>
+			<!-- // визовая анкета:  -->
+
+			<!-- Проверяем пароль  -->
+			<div class="col-9" v-if="authorization">
+				<div class="card">
+					<div class="card-header">	Вхід </div>
+					<div class="card-body">
+						<h5 class="card-title">Вітаю!</h5>
+						<p class="card-text">Для продовження введіть пароль (можливо це ваш рік народження):</p>
+						<div class="form-group" >
+							<input type="text" class="form-control" maxlength="4" @input="checkPass($event.target.value)">
+						</div>
+					</div>
+				</div>
+			</div><!-- //col-9 else-->
+			<!-- // Проверяем пароль  -->
+		</div><!-- // row  -->
+	</div><!-- // #app  -->
+	
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> 
+<script src="js/database.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
+

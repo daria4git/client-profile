@@ -8,106 +8,31 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-	<div id="app" class="container-fluid">
-		<div class="custom-alert ">
-			<div class="row ">
-				<div class="col-8"> 
-					
-				</div>
-				<div class="col-4">
-					<a href="#">Settings</a>
-				</div>
-			</div>
-		</div>
+	<div class="container">
 		<div class="row">
-			<div class="col-3">
-				<div class="alert alert-empty" role="alert">
-					<b class="username">{{ username }} </b></div>
-				<div :class="['list-group preload',{'preloadEnd':listGroupLoad}]">
-				  <a href="#" class="list-group-item list-group-item-action active">
-				    Основна анкета
-				  </a>
-				  <div class="list-sub-block">
-				  	<br>
-				  	<button type="button" class="btn btn-success" :disabled="isDisabledStudentSaveBtn" @click="saveToLS">Зберегти</button>
-				  	<br>
-				  	<button type="button" :class="['btn-res',{'active':activeSend}]" :disabled="!activeSend">Надіслати в EDUSTEPS</button>
-				  	
-				  </div>
-				  <a href="#" class="list-group-item list-group-item-action">Візова анкета</a>
-				  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Disabled</a>
-				</div>
-			</div><!-- col-3 -->
-			<div class="col-9" v-if="mainContentLoad">
-				<div :class="['alert',alertClasses[alertMsgClass]]" role="alert"><i class="fas fa-info-circle"></i> {{ alertMsg }}</div>
-				<div class="row">
-				<div class="col-6">
-					<div class="card">
-					  <div class="card-header blue">
-					    Анкета студента
-					  </div>
-					  <div class="card-body">
-						<div :class="['form-group ',item.key]" v-for="item in studentAppFields" :key="item.key">
-							<label>{{ item.label }}</label>
-							<input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
-						</div>
-						<p class="text-right"><a href="#" @click="addSet('student')" v-if="number.student<2">Додати ще одного студента</a> </p> 
-					  </div>
-					</div>
-				</div>
-				<div class="col-6">
-					<div class="card">
-					  <div class="card-header">
-					    Додаткова інформація
-					  </div>
-					  <div class="card-body">
-					  	<div class="form-group">
-						  	<label>Сімейний стан</label>	
-						  	<select class="form-control" v-model="studentStatus">
-						  		<option value="0">Неодружений (незаміжня)</option>
-						  		<option value="1">Одружений(заміжня)</option>
-						  		<option value="2">У розводі</option>
-						  		<option value="3">Вдівець (вдова) </option>
-						  	</select>
-					  	</div>
-					  	<div class="form-group hide-group">
-					  		<label :class="['mb0 collaps',{'collapsed':parentForm}]"><span>Додати інформацію про батьків</span> <i class="fas fa-plus-circle"></i>
-					  			<input type="checkbox" v-model="parentForm">
-					  		</label>
-					  		<div class="parent-block" v-if="parentForm">
-					  			<div :class="['form-group ',item.key]" v-for="item in parentAppFields" :key="item.key">
-									<label>{{ item.label }}</label>
-									<input type="text" class="form-control" v-model="parentAppAnswers[item.key]">
-								</div>
-								<p class="text-right"><a href="#" @click="addSet('parent')" v-if="number.parent<2">Додати ще</a> </p> 					  			
-					  		</div>
-					  	</div>
-					  </div>
-					</div>
-				</div>
+			<div class="col-3"></div>
+			<div class="col-6">
+				<br>
+				<br>
+				<br>
+				<ul>
+					<li><a href="apply.html">Кабинет клиента</a></li>
+					<li><a href="contacts.html">Обновленные конаткты в СРМ</a></li>
+					<li><a href="crm-app.html">Наша адимнка кабинета клиента</a></li>
+					<li><a href="crm-profile.html">Новый профайл</a></li>
+				</ul>
 			</div>
-			</div><!-- col-9 -->
-			<div class="col-9" v-else>
-				<div class="card">
-				  <div class="card-header">
-				    Dхід
-				  </div>
-				  <div class="card-body">
-				    <h5 class="card-title">Вітаю!</h5>
-				    <p class="card-text">Для продовження введіть пароль (або свій рік народження):</p>
-				    <div class="form-group" >
-							<input type="text" class="form-control" maxlength="4" @input="checkPass($event.target.value)">
-						</div>
-				  </div>
-				</div>
-
-			</div><!-- col-9 -->
+			<div class="col-3"></div>
 		</div>
 	</div>
-	
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>	
-<script src="js/scripts.js"></script>
+	<script>
+		var c_g = 3
+		var data = {
+			a: 1,
+			b: 2,
+			c: c_g
+		}
+	</script>
 </body>
 </html>
 

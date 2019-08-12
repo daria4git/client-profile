@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	</div>
-	<div class="container-fluid"><br><br>
+	<div class="container-fluid" id="app"><br><br>
 		<div class="row">
     <div class="col-12">
       <ul class="profile-top">
@@ -60,35 +60,42 @@
     <div class="row">
       <div class="col-4">
         <div >
-        <h5>Заметки</h5>
+        <h5>Заметки <i class="fas fa-plus-circle"></i></h5>
+        <p class="ul-title"><b>Кабинет клиента: </b> <a href="#" @click="copyToClip('link-'+item.id)"> <i class="fas fa-copy"></i></a></p>
+        <ul>
+          <li><b>login:</b> Surname</li>
+          <li><b>pass:</b> 2002</li>
+          <li> <a href="#">ссылка</a></li>
+        </ul>
+        <hr>
           <ul class="history">
-            <li>Виставлено форму</li>
-            <li>Created</li>
+            <li>Created <i>12-08-2019</i> </li>
           </ul>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-8">
         <h5>Текущие задачи</h5>
-      </div>
-      <div class="col-4">
-        <h5>Заметки</h5>
       </div>
     </div>
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <ul>
+      <li v-for="(value, name) in fields"><b>{{studentSet[name.slice(0, name.indexOf('_'))] }}</b> <span>{{ value }}</span> </li>
+    </ul>
+  </div>
 </div>
     </div>
     <div class="col-4">
       <div class="card">
-        <div class="card-header bg-warning bg-parents">Родители</div>
+        <div class="card-header bg-success bg-parents">Родители</div>
         <div class="card-body">
            <p class="text-right"><a href="#" @click="addSet('student')">Добавить</a> </p>
-      <template v-if="hasParent">
-        <div :class="['form-group ',item.key]" v-for="item in studentAppFields" :key="item.key">
-          <label>{{ item.label }}</label>
-          <input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
-        </div>
+      <template >
+<!--         <div :class="['form-group ',item.key]" v-for="item in studentAppFields" :key="item.key">
+  <label>{{ item.label }}</label>
+  <input type="text" class="form-control" v-model="studentAppAnswers[item.key]">
+</div> -->
       </template>
         
         </div>
@@ -99,5 +106,9 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> 
+
+<script src="js/apply.js"></script> 
+
 </body>
 </html>
