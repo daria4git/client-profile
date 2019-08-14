@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LP index</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="css/all.css" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/lp.css">
+</head>
+<body>
+	<div class="wrapper" id="app">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<select v-model="group">
+						<option value="0">2020</option>
+						<option value="1">2021</option>
+						<option value="2">2022</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-6">
+					<div class="text" v-html="intros[group]"></div>
+				</div>
+				<div class="col-5">
+					<form action="#">
+						<p>Расскажите нам о себе:</p>
+						<div class="block">
+							<p class="blue">Кто вы</p>
+							<label>
+								<input type="radio" name="user" v-model="user" value="0"> Я ученик</label>
+							<label><input type="radio" name="user" v-model="user" value="1"> Я родитель будущего студента </label>							
+						</div>
+						<div class="block sldr">
+							<label for="amount" class="blue">Ваш бюджет на обучение:</label>
+							<input type="text" id="amount" readonly >
+							<div id="slider-range"></div>
+							<label><input type="checkbox" v-model="free">Меня интересует только бесплатное обучение</label>
+							<label><input type="checkbox" v-model="disableBudget">Я незнаю</label>
+						</div>
+						<div class="block form-group"><p  class="blue">Я хочу учиться на таком языке:</p>
+							<label><input type="radio" name="lang" v-model="lang" value="0"> Английский</label>
+							<label><input type="radio" name="lang"  v-model="lang" value="1"> Другой(выберите из списка) </label>
+							<div>
+								<select class="form-control" v-if="lang !== '0'" v-model="lang2">
+									<option value="0">Испанский</option>
+									<option value="1">Итальянский</option>
+									<option value="2">Немецкий</option>
+									<option value="3">Польский</option>
+									<option value="4">Чешский</option>
+									<option value="5">Нет в списке</option>
+								</select>
+							</div>
+						</div>
+						<div class="block form-group">
+							<p  class="blue">Вы уже сдавали тест по английскому</p>
+							<label>
+								<input type="radio" 
+										name="pass" 
+										v-model="pass" 
+										value="0"
+										@change="setSlider"> Да</label>
+							<label><input type="radio" name="pass" v-model="pass" value="1"> Нет </label>
+						<div  v-if="pass ==='1'">
+							<p  class="blue">Примерный уровень английского</p>
+							<select class="form-control">
+								<option value="0">Elementary</option>
+								<option value="0">Begginer</option>
+								<option value="0">Pre-Intermediate</option>
+								<option value="0">Intermediate</option>
+								<option value="0">Upper-Intermediate</option>
+								<option value="0">Advanced</option>
+							</select>
+						</div>
+						</div>
+						<div class="block sldr" v-if="pass ==='0'">
+							
+							<label for="amount"  class="blue">Уровень английского :</label> <input type="text" id="amount2" readonly >
+							<label><input type="radio" name="test-type" checked="">IELTS</label>
+							<label><input type="radio" name="test-type"> TOEFL </label>
+
+							
+							<div id="slider-range-max"></div>
+						</div><br>
+						<button class="btn btn-info btn-block">Отправить</button>
+
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> 
+<script src="js/lp.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.wrapper {
+  background: #288cec;
+  min-height: 100vh; }
+
+.text {
+  background: #fff; }
+
+.text {
+  padding: 50px; }
+
+form {
+  background: #eee;
+  padding: 25px; }
+
+#amount, #amount2 {
+  border: 0;
+  background: transparent; }
+
+form .block {
+  border-top: 1px solid #ddd;
+  padding: 5px; }
+
+.ui-widget-header {
+  background: #2289e5; }
+
+#slider-range-max.ui-widget-content {
+  background: #2289e5; }
+  #slider-range-max.ui-widget-content .ui-widget-header {
+    background: #fff; }
+
+.blue {
+  font-weight: bold;
+  color: #054f97; }
