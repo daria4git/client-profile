@@ -11,11 +11,16 @@ var baseComp = [
 ];
 var baseFamComp = [
 	{id: 0, key: 'pib', label:'Прізвище та імя', type:'text'},
-	{id: 1, key: 'dob', label:'Дата народження',type:'text'},
-	{id: 2, key: 'countryofbirth', label:'Країна народження',type:'text'},
+	{id: 1, key: 'dobEx', label:'Дата і країна народження',type:'text'},
 	{id: 3, key: 'additional', label:'Домашня адреса, зайнятість',type:'text'},
 	{id: 4, key: 'marital', label:'Сімейний стан',type:'text'},
 ];
+var baseDivorceComp = [
+	{id: 0, key: 'pib', label:'Прізвище та імя', type:'text'},
+	{id: 1, key: 'dobEx', label:'Дата і країна народження',type:'text'},
+	{id: 3, key: 'additional', label:'Домашня адреса, зайнятість',type:'text'},
+	{id: 4, key: 'marital', label:'Сімейний стан',type:'text'},
+	];
 var vm = new Vue({
 	el: '#app',
 	data: {
@@ -81,20 +86,22 @@ var vm = new Vue({
 			},
 		sectionB: {
 			id: 'B', title: 'Family Information', collapsed: true, 
-			answers: {marital: 0,supposePib: null, supposeTel: null,supposeEmail: null, supposeDob: null, supposeNat: null, supposeCityofbirth: null, supposeCityofbirth: null, supposeWork: null, motherPib: null, motherTel: null, motherEmail: null, fatherPib: null, fatherTel: null, fatherEmail: null,noChildrens: true, childrens: [{pib_0: null, dob_0: null, countryofbirth_0: null, additional_0: null, marital_0: null}],noSisters: true, sisters: [{pib_0: null, dob_0: null, countryofbirth_0: null, additional_0: null, marital_0: null}], relatives: null},
+			answers: {
+						marital: 0,
+						supposePib: null, supposeDob: null, supposeNat: null, supposeCityofbirth: null, supposeWork: null,
+						otherMerrige: false, numOtherM: 1, pibOtherS_1: null, dobOtherS_1: null, natOtherS_1: null, startM_1: null, endM_1: null, countryTer_1: null,
+						motherPib: null, motherTel: null, motherEmail: null, fatherPib: null, fatherTel: null, fatherEmail: null,noChildrens: true, childrens: [{pib_0: null, dob_0: null, countryofbirth_0: null, additional_0: null, marital_0: null}],noSisters: true, sisters: [{pib_0: null, dob_0: null, countryofbirth_0: null, additional_0: null, marital_0: null}], relatives: null},
 			fields: [
 				{id: 0, key: 'marital', label: 'Сімейний стан', type: 'select', options: ['Single','Married','Divorced','Widow']},
-				{id: 1, key: 'supposePib', label: 'Прізвище та імя дружини(чоловіка)', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
-				{id: 2, key: 'supposeTel', label: 'Телефон', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
-				{id: 3, key: 'supposeEmail', label: 'Email', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
+				{id: 1, key: 'supposePib', label: 'Прізвище та ім\'я дружини(чоловіка)', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
 				{id: 4, key: 'supposeDob', label: 'Дата народження', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
 				{id: 5, key: 'supposeNat', label: 'Громадянство', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
 				{id: 6, key: 'supposeCityofbirth', label: 'Місто та країна народження', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
 				{id: 7, key: 'supposeWork', label: 'Зайнятість (непрацює/працює/ким працює)', type: 'conditionalNotEquel', base: 'marital', val: 0, input: 'text' },
-				{id: 8, key: 'motherPib', label: 'Прізвище та імя матері', type: 'text'},
+				{id: 8, key: 'motherPib', label: 'Прізвище та ім\'я матері', type: 'text'},
 				{id: 9, key: 'motherTel', label: 'Телефон', type: 'text'},
 				{id: 10, key: 'motherEmail', label: 'Email', type: 'text'},	
-				{id: 11, key: 'fatherPib', label: 'Прізвище та імя батька', type: 'text'},
+				{id: 11, key: 'fatherPib', label: 'Прізвище та ім\'я батька', type: 'text'},
 				{id: 12, key: 'fatherTel', label: 'Телефон', type: 'text'},
 				{id: 13, key: 'fatherEmail', label: 'Email', type: 'text'},	
 				{id: 14, key: 'noChildrens', label: 'Дітей не маю', type: 'checkbox',  checked: true, },

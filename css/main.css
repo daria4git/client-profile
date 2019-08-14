@@ -28,9 +28,13 @@ label {
 
 .list-sub-block {
   background: #fff;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  border: 1px solid #ddd; }
   .list-sub-block button {
     margin-bottom: 15px; }
+
+.list-group-item.main + .list-sub-block {
+  border-bottom: 0 !important; }
 
 .alert-empty {
   color: #bfbfbf;

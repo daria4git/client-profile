@@ -26,18 +26,26 @@
 				</div>
 				<div :class="['list-group preload',{'preloadEnd':listGroupLoad}]">
 					<a href="#" 
-					   :class="['list-group-item list-group-item-action', {'active': generalAppShow, 'disabled': !generalApp} ]"
+					   :class="['list-group-item list-group-item-action main', {'active': generalAppShow, 'disabled': !generalApp} ]"
 					   @click="visaAppShow = false; generalAppShow = true ">
 						Основна анкета
 					</a>
-					<div class="list-sub-block">
-						<button type="button" class="btn btn-link" :disabled="!activeStudentAppSave" @click="saveToLS">Зберегти в браузері</button>
-						<button type="button" :class="['btn btn-success',{'active':activeStudentAppSend}]" :disabled="!activeStudentAppSend">Надіслати в EDUSTEPS</button>
+					<div class="list-sub-block" v-if="generalAppShow">
+						<button type="button" :class="['btn btn-success', {'active': activeStudentAppSend}]">Підтвердити</button>
+						<button type="button" class="btn btn-light" >
+							Зберегти </button>						
 					</div>
+
 					<a href="#" 
 							:class="['list-group-item list-group-item-action', {'disabled':!visaApp, 'active': visaAppShow}]"
 							 @click="visaAppShow = true; generalAppShow = false "
 							 >Візова анкета</a>
+
+					<div class="list-sub-block" v-if="visaAppShow">
+						<button type="button" :class="['btn btn-success', {'active': activeStudentAppSend}]">Підтвердити</button>
+						<button type="button" class="btn btn-light">
+							Зберегти </button>						
+					</div>
 				</div><!-- list-group preload-->
 			</div><!-- col-3 -->
 			<!-- //МЕНЮ: -->
