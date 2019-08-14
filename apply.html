@@ -114,6 +114,7 @@
 				</div>
 				<div class="row">
 					<div class="col-8">	
+
 						<div class="card section sectionA" >
 							<div class="card-header">	{{sectionA.title}}
 								<i class="fas fa-plus-circle" 
@@ -127,27 +128,36 @@
 										 v-for="item in sectionA.fields" 
 										 :key="item.key">
 										 <template v-if="item.type==='text'">
-										 	<label>{{ item.label }}</label>
+										 	<label>{{item.num+ item.label }}</label>
 										 	<input type="text" 
 										 				class="form-control" 
 										 				v-model="sectionA.answers[item.key]">
 										 	</template>
-										 	<template v-if="item.type==='checkbox'">
-										 		<label>
-										 		<input type="checkbox"
-										 					 :checked="item.checked"
-										 					 v-model="sectionA.answers[item.key]">
-										 		{{ item.label }} </label>
-										 	</template>
-										 	<template v-if="item.type==='conditionalreverse'">  <div class="form-group" v-if="!sectionA.answers[item.base]">
-										 		<label >
-										 		 	{{ item.label }} </label>
-											 		<input :type="item.input" 
+											<template v-if="item.type==='radioyn'">
+												 	<label>{{item.num+item.common }}</label>
+												 	<label>Так
+												 		<input type="radio" 
+												 				:name="'a-'+item.key"
+												 				value=true
+												 				v-model="sectionA.answers[item.key]">
+												 	</label>
+												 	<label>Ні
+												 		<input type="radio" 
+												 				:name="'a-' + item.key" 
+												 				value=false
+												 				v-model="sectionA.answers[item.key]">
+												 	</label>
+											</template>
+										 	<template v-if="item.type==='conditional' && item.input==='text'">  
+										 		<div class="form-group" v-if="sectionA.answers[item.base]==='true'">
+										 			<label > {{ item.label }} </label>
+											 		<input type="text" 
 											 					class="form-control" 
-											 					:checked="item.checked"
-											 					v-model="sectionA.answers[item.key]">
-										 	</div>
+											 					v-model="sectionA.answers[item.key]"/>
+											 				
+										 		</div>
 										 	</template>
+
 								</div>
 							</div>
 						</div>
@@ -313,40 +323,38 @@
 							</div>
 							<div :class="['card-body',{'collapsed': sectionE.collapsed}]">
 								<div :class="['form-group ',item.key]" 
-										 v-for="item in sectionE.fields" 
+										 v-for="item  in sectionE.fields" 
 										 :key="item.key">
-										 <template v-if="item.type==='text'">
-										 	<label>{{ item.label }}</label>
+									<template v-if="item.type==='text'">
+										 	<label>{{item.num+item.label }}</label>
 										 	<input type="text" 
 										 				class="form-control" 
 										 				v-model="sectionE.answers[item.key]">
-										 	</template>
-										 	<template v-if="item.type==='checkbox'">
-										 		<label>
-										 		<input type="checkbox"
-										 					 :checked="item.checked"
-										 					 v-model="sectionE.answers[item.key]">
-										 		{{ item.label }} </label>
-										 	</template>
-										 	<template v-if="item.type==='conditionalreverse' && item.input==='text'">  
-										 		<div class="form-group" v-if="!sectionE.answers[item.base]">
-										 			<label >
-										 		 	{{ item.label }} </label>
-											 		<input :type="item.input" 
-											 					class="form-control" 
-											 					v-model="sectionE.answers[item.key]">
-										 		</div>
-										 	</template>
-										 	<template v-if="item.type==='conditionalreverse' && item.input==='textarea'">  
-										 		<div class="form-group" v-if="!sectionE.answers[item.base]">
-										 			<label >
-										 		 	{{ item.label }} </label>
-											 		<textarea 
-											 					class="form-control" 
-											 					v-model="sectionE.answers[item.key]">
-											 				</textarea>
-										 		</div>
-										 	</template>
+									</template>
+									<template v-if="item.type==='radioyn'">
+										 	<label>{{item.num+item.common }}</label>
+										 	<label>Так
+										 		<input type="radio" 
+										 				:name="item.id+item.key"
+										 				value=true 
+										 				v-model="sectionE.answers[item.key]">
+										 	</label>
+										 	<label>Ні
+										 		<input type="radio" 
+										 				:name="item.id+item.key" 
+										 				value=false 
+										 				v-model="sectionE.answers[item.key]">
+										 	</label>
+									</template>
+								 	<template v-if="item.type==='conditional' && item.input==='textarea'">  
+								 		<div class="form-group" v-if="sectionE.answers[item.base]==='true'">
+								 			<label > {{ item.label }} </label>
+									 		<textarea 
+									 					class="form-control" 
+									 					v-model="sectionE.answers[item.key]">
+									 				</textarea>
+								 		</div>
+								 	</template>
 								</div>
 							</div>
 						</div>

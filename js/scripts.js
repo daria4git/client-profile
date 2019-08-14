@@ -65,14 +65,18 @@ var vm = new Vue({
 		maritalAll: ['Single','Married','Divorced','Widow'],
 		marital: 1,
 		sectionA: {
-			id: 'A', title: 'Main', collapsed: true, 
-			answers: {pib: null, nomaiden: true, maiden: null, dob: null, cityofbirth: null},
+			id: 'A', title: 'Main', collapsed: false, 
+			answers: {pib: null, hasMaiden: false, maiden: null, dob: null, cityofbirth: null},
 			fields: [
-				{id: 0, key: 'pib', label: 'Прізвище та ім\'я', type: 'text'},
-				{id: 1, key: 'nomaiden', label: 'Ніколи не змінював(-ла) прізвище', type: 'checkbox',  checked: true, },
-				{id: 2, key: 'maiden',label: 'Попередні прізвища', type: 'conditionalreverse', input: 'text',base: 'nomaiden' },
-				{id: 3, key: 'dob',label: 'Дата народження', type: 'text'},
-				{id: 4, key: 'cityofbirth',label: 'Місто та країна народження', type: 'text'},
+				{id: 0, num: "1. ", key: 'pib', label: 'Прізвище та ім\'я', type: 'text'},
+
+				{id: 1, num: "2. ", key: 'hasMaiden', common: 'Ви коли-небудь змінювали прізвище?', type: 'radioyn'},
+
+				{id: 2, key: 'maiden',label: 'Попередні прізвища', type: 'conditional', input: 'text', base: 'hasMaiden' },
+
+				{id: 3, num: "3. ", key: 'dob', label: 'Дата народження', type: 'text'},
+
+				{id: 4, num: "4. ", key: 'cityofbirth', label: 'Місто та країна народження', type: 'text'},
 				]
 			},
 		sectionB: {
@@ -125,15 +129,23 @@ var vm = new Vue({
 				]
 		},
 		sectionE: {id: 'E', title: 'Поїздка', collapsed: false, 
-			answers:{entry:null, nopreviousvisa:true, previousvisas: null, norejectes:true, rejectes: null, notravels: true, travels: null},
+			answers:{entry:null, nopreviousvisa:false, previousvisas: null, norejectes:false, rejectes: null, notravels: false, travels: null},
 			fields: [
-				{id: 0, key: 'entry',label: 'Запланована дата в\'їзду в країну', type: 'text'},
-				{id: 1, key: 'nopreviousvisa', label: 'Я ніколи не отримував візи раніше', type: 'checkbox',  checked: true, },
-				{id: 2, key: 'previousvisas',label: 'Коли і в які країни ви подавались', type: 'conditionalreverse', input: 'textarea', base: 'nopreviousvisa' },
-				{id: 3, key: 'norejectes', label: 'Я ніколи не отримував відмови у візах', type: 'checkbox',  checked: true, },
-				{id: 4, key: 'rejectes',label: 'Коли і в які країни ви подавались', type: 'conditionalreverse', input: 'textarea', base: 'norejectes' },
-				{id: 5, key: 'notravels', label: 'Я ніколи не подорожував в інші країни', type: 'checkbox',  checked: true, },
-				{id: 6, key: 'travels',label: "Країна, дата в'їзду, тривалість поїздки, причина поїздки", type: 'conditionalreverse', input: 'textarea', base: 'notravels' },
+
+				{id: 0, num: "1. ", key: 'entry',label: 'Запланована дата в\'їзду в країну', type: 'text'},
+
+				{id: 1, num: "2. ", key: 'nopreviousvisa', common: 'Чи отримували ви візи в цю або інші країни?', type: 'radioyn',  },
+
+				{id: 2, key: 'previousvisas',label: 'Коли і в які країни ви отримали візу', type: 'conditional', input: 'textarea', base: 'nopreviousvisa' },
+
+				{id: 3, num: "3. ", key: 'norejectes', common: 'Чи отримували ви відмову у візі в цю або інші країни?', type: 'radioyn'},
+
+				{id: 4, key: 'rejectes',label: 'Коли і в які країни ви подавались', type: 'conditional', input: 'textarea', base: 'norejectes' },
+
+				{id:5, num: "4. ",  key: 'notravels', common: 'Чи подорожували ви в інші країни протягом останніх 10 років?', type: 'radioyn' },
+
+				{id: 6, key: 'travels',label: "Країна, дата в'їзду, тривалість поїздки, причина поїздки", type: 'conditional', input: 'textarea', base: 'notravels' },
+
 				]
 		},
 
