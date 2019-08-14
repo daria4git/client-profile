@@ -55,7 +55,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="block form-group">
+						<div class="block form-group" v-if="lang === '0'">
 							<p  class="blue">Вы уже сдавали тест по английскому</p>
 							<label>
 								<input type="radio" 
@@ -64,7 +64,7 @@
 										value="0"
 										@change="setSlider"> Да</label>
 							<label><input type="radio" name="pass" v-model="pass" value="1"> Нет </label>
-						<div  v-if="pass ==='1'">
+						<div  v-if="pass ==='1' && lang === '0'">
 							<p  class="blue">Примерный уровень английского</p>
 							<select class="form-control">
 								<option value="0">Elementary</option>
@@ -76,7 +76,7 @@
 							</select>
 						</div>
 						</div>
-						<div class="block sldr" v-if="pass ==='0'">
+						<div class="block sldr" v-if="pass ==='0' && lang === '0'">
 							
 							<label for="amount"  class="blue">Уровень английского :</label> <input type="text" id="amount2" readonly >
 							<label><input type="radio" name="test-type" checked="">IELTS</label>
@@ -85,7 +85,7 @@
 							
 							<div id="slider-range-max"></div>
 						</div><br>
-						<button class="btn btn-info btn-block">Отправить</button>
+						<button class="btn btn-info btn-block" type="button">Отправить</button>
 
 					</form>
 				</div>
