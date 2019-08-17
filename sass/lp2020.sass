@@ -1,0 +1,178 @@
+.nav
+	ul
+		-webkit-padding-start: 0
+		li 
+			list-style-type: none
+			display: inline-block
+			text-transform: uppercase
+			margin-right: 15px
+			padding: 10px 0
+			a
+				color: #000
+	.tels
+		li.not
+				display: none
+				&.show
+					display: block
+.thank
+	margin-top: 45px
+	margin-bottom: 45px
+.what-next
+	margin-top: 45px
+.about, .next, .count
+	p 
+		margin: 0
+.rel
+	position: relative
+#about-us
+	margin-left: 5%
+	margin-top: -10px
+
+.flex
+	display: flex
+.count
+	background: #eee
+	// padding: 15px
+	text-align: center
+	margin-left: 5%
+	.head, .body, .footer
+		padding: 5px 10px
+		font-weight: bold
+ 	.head
+		border-bottom: 1px solid #ddd 
+	.body
+		overflow: hidden
+		height: 70px
+		p 
+			font-size: 45px
+			margin: 0
+			line-height: 1
+			font-weight: normal
+		.start 
+			margin-top: -34px
+		.end
+			margin-bottom: -9px
+		.end,	.start 
+			transition: all .5s cubic-bezier(0.6, -0.28, 0.74, 0.05)
+.what-next .col-6
+.next
+	position: relative
+	background: #eee
+	display: inline-block
+	padding: 25px 35px
+	&:before
+		content: ""
+		background: url('../img/arrow.png')
+		width: 40px
+		height: 170px
+		display: block
+		position: absolute
+		left: -40px
+		bottom: -95px
+		transform: rotate(30deg) scale(.5)
+	&:after
+		content: ""
+		background: url('../img/arrow.png')
+		width: 40px
+		height: 170px
+		display: block
+		position: absolute
+		right: -40px
+		// bottom: -45px
+		top: -25px
+		transform: rotate(100deg) scale(1,-1)
+
+.calendar
+	margin-top: 25px
+	border-collapse: separate
+	border-spacing: 3px
+	border-radius: 10px
+	th,td 
+		min-width: 60px
+		height: 50px
+		padding: 5px
+		position: relative
+	th 
+		height: 25px
+		border-bottom: 1px solid #ddd
+	.date 
+		position: absolute
+		font-size: 12px
+		left: 5px 
+		top: 3px
+		color: #6d6d6d
+	td.dis 
+		background: #ddd
+		border-radius: 10px
+	td:not(.dis):hover
+		background: #c1ffbd
+		cursor: pointer
+		border-radius: 10px
+		position: relative
+		&:after 
+			content: "\f055"
+			font-family: 'Font Awesome 5 Free'
+			font-weight: bold
+			font-size: 25px
+			text-align: center
+			display: block
+			color: #0b540b
+			position: absolute
+			top: calc(50% - 20px)
+			left: calc(50% - 12px)
+td p
+	text-align: right
+	margin: 0
+	// line-height: 1px
+	// padding-right: 5px
+	display: inline-block
+span.ok, span.pending
+	// display: inline-block
+	// background: green
+	// width: 5px
+	// height: 2px
+	// vertical-align: middle
+	color: green
+	&:before
+		content: "\f192"
+		font-size: 8px
+		font-family: 'Font Awesome 5 Free'
+		font-weight: bold
+span.pending
+	color: orange
+	// background: orange
+.legend
+	span
+		width: 25px
+		height: 5px
+	p 
+		margin: 0
+		font-style: italic
+		font-size: 14px
+	.dis-span
+		background: #b1b1b1
+		height: 10px
+#about-consultation
+	font-size: 14px
+	padding-top: 50px
+.shedule
+	position: absolute
+	width: 100%
+	z-index: 99999
+	p
+		margin: 0
+$green: #2594ff
+.corner
+	background: $green
+	border-radius: 10px
+	padding: 10px 15px
+	position: relative
+	color: #fff
+	&:after
+		content: ''
+		position: absolute
+		left: -20px
+		top: 20px
+		border: 10px solid transparent
+		border-right: 10px solid $green
+	 

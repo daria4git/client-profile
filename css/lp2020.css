@@ -1,0 +1,177 @@
+.nav ul {
+  -webkit-padding-start: 0; }
+  .nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-right: 15px;
+    padding: 10px 0; }
+    .nav ul li a {
+      color: #000; }
+
+.nav .tels li.not {
+  display: none; }
+  .nav .tels li.not.show {
+    display: block; }
+
+.thank {
+  margin-top: 45px;
+  margin-bottom: 45px; }
+
+.what-next {
+  margin-top: 45px; }
+
+.about p, .next p, .count p {
+  margin: 0; }
+
+.rel {
+  position: relative; }
+
+#about-us {
+  margin-left: 5%;
+  margin-top: -10px; }
+
+.flex {
+  display: flex; }
+
+.count {
+  background: #eee;
+  text-align: center;
+  margin-left: 5%; }
+  .count .head, .count .body, .count .footer {
+    padding: 5px 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd; }
+  .count .body {
+    overflow: hidden;
+    height: 70px; }
+    .count .body p {
+      font-size: 45px;
+      margin: 0;
+      line-height: 1;
+      font-weight: normal; }
+    .count .body .start {
+      margin-top: -34px; }
+    .count .body .end {
+      margin-bottom: -9px; }
+    .count .body .end, .count .body .start {
+      transition: all 0.5s cubic-bezier(0.6, -0.28, 0.74, 0.05); }
+
+.next {
+  position: relative;
+  background: #eee;
+  display: inline-block;
+  padding: 25px 35px; }
+  .next:before {
+    content: "";
+    background: url("../img/arrow.png");
+    width: 40px;
+    height: 170px;
+    display: block;
+    position: absolute;
+    left: -40px;
+    bottom: -95px;
+    transform: rotate(30deg) scale(0.5); }
+  .next:after {
+    content: "";
+    background: url("../img/arrow.png");
+    width: 40px;
+    height: 170px;
+    display: block;
+    position: absolute;
+    right: -40px;
+    top: -25px;
+    transform: rotate(100deg) scale(1, -1); }
+
+.calendar {
+  margin-top: 25px;
+  border-collapse: separate;
+  border-spacing: 3px;
+  border-radius: 10px; }
+  .calendar th, .calendar td {
+    min-width: 60px;
+    height: 50px;
+    padding: 5px;
+    position: relative; }
+  .calendar th {
+    height: 25px;
+    border-bottom: 1px solid #ddd; }
+  .calendar .date {
+    position: absolute;
+    font-size: 12px;
+    left: 5px;
+    top: 3px;
+    color: #6d6d6d; }
+  .calendar td.dis {
+    background: #ddd;
+    border-radius: 10px; }
+  .calendar td:not(.dis):hover {
+    background: #c1ffbd;
+    cursor: pointer;
+    border-radius: 10px;
+    position: relative; }
+    .calendar td:not(.dis):hover:after {
+      content: "\f055";
+      font-family: 'Font Awesome 5 Free';
+      font-weight: bold;
+      font-size: 25px;
+      text-align: center;
+      display: block;
+      color: #0b540b;
+      position: absolute;
+      top: calc(50% - 20px);
+      left: calc(50% - 12px); }
+
+td p {
+  text-align: right;
+  margin: 0;
+  display: inline-block; }
+
+span.ok, span.pending {
+  color: green; }
+  span.ok:before, span.pending:before {
+    content: "\f192";
+    font-size: 8px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: bold; }
+
+span.pending {
+  color: orange; }
+
+.legend span {
+  width: 25px;
+  height: 5px; }
+
+.legend p {
+  margin: 0;
+  font-style: italic;
+  font-size: 14px; }
+
+.legend .dis-span {
+  background: #b1b1b1;
+  height: 10px; }
+
+#about-consultation {
+  font-size: 14px;
+  padding-top: 50px; }
+
+.shedule {
+  position: absolute;
+  width: 100%;
+  z-index: 99999; }
+  .shedule p {
+    margin: 0; }
+
+.corner {
+  background: #2594ff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  position: relative;
+  color: #fff; }
+  .corner:after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 20px;
+    border: 10px solid transparent;
+    border-right: 10px solid #2594ff; }
