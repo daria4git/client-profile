@@ -1,0 +1,6 @@
+ git pull origin master
+ error: Your local changes to the following files would be overwritten by merge:
+ Please commit your changes or stash them before you merge.
+
+ to discard changes in working directory:
+ $ git checkout -- css/main.css
