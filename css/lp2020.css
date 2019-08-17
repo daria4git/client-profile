@@ -17,31 +17,68 @@
 .thank {
   margin-top: 45px;
   margin-bottom: 45px; }
+  .thank .intro {
+    margin-top: 5px; }
+    .thank .intro p {
+      line-height: 20px;
+      margin-bottom: 10px; }
+
+h1 {
+  color: #2594ff;
+  margin-bottom: 25px; }
 
 .what-next {
   margin-top: 45px; }
 
-.about p, .next p, .count p {
+.about p, .next p, .count p, .thank p {
   margin: 0; }
 
 .rel {
   position: relative; }
 
 #about-us {
-  margin-left: 5%;
-  margin-top: -10px; }
+  border-left: 4px solid #2594ff;
+  padding-left: 15px; }
+  #about-us p {
+    font-style: italic;
+    font-weight: bold; }
+
+.about-flex {
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  margin: 50px 0; }
+
+.flex-around {
+  justify-content: space-between;
+  align-items: center; }
+
+.team {
+  width: 150px; }
 
 .flex {
   display: flex; }
 
-.count {
+#intime {
   background: #eee;
-  text-align: center;
-  margin-left: 5%; }
+  padding: 25px 10px; }
+  #intime h3 {
+    font-size: 21px;
+    font-weight: bold; }
+
+.count {
+  background: #cee7ff;
+  border-radius: 10px;
+  text-align: center; }
+  .count .head, .count .footer {
+    color: #04284c; }
+  .count .head {
+    border-right-top-radius: 4px; }
   .count .head, .count .body, .count .footer {
     padding: 5px 10px;
-    font-weight: bold;
-    border-bottom: 1px solid #ddd; }
+    font-weight: bold; }
+  .count .head, .count .body {
+    border-bottom: 1px solid #aad5ff; }
   .count .body {
     overflow: hidden;
     height: 70px; }
@@ -51,7 +88,7 @@
       line-height: 1;
       font-weight: normal; }
     .count .body .start {
-      margin-top: -34px; }
+      margin-top: -46px; }
     .count .body .end {
       margin-bottom: -9px; }
     .count .body .end, .count .body .start {
@@ -61,7 +98,9 @@
   position: relative;
   background: #eee;
   display: inline-block;
-  padding: 25px 35px; }
+  display: none;
+  padding: 25px 35px;
+  margin: 50px 100px 25px 50px; }
   .next:before {
     content: "";
     background: url("../img/arrow.png");
@@ -69,11 +108,10 @@
     height: 170px;
     display: block;
     position: absolute;
-    left: -40px;
-    bottom: -95px;
-    transform: rotate(30deg) scale(0.5); }
+    right: 0px;
+    bottom: -65px;
+    transform: rotate(-45deg) scale(-1, 1); }
   .next:after {
-    content: "";
     background: url("../img/arrow.png");
     width: 40px;
     height: 170px;
@@ -84,12 +122,11 @@
     transform: rotate(100deg) scale(1, -1); }
 
 .calendar {
-  margin-top: 25px;
   border-collapse: separate;
   border-spacing: 3px;
   border-radius: 10px; }
   .calendar th, .calendar td {
-    min-width: 60px;
+    min-width: 50px;
     height: 50px;
     padding: 5px;
     position: relative; }
@@ -105,22 +142,24 @@
   .calendar td.dis {
     background: #ddd;
     border-radius: 10px; }
-  .calendar td:not(.dis):hover {
-    background: #c1ffbd;
-    cursor: pointer;
-    border-radius: 10px;
-    position: relative; }
-    .calendar td:not(.dis):hover:after {
-      content: "\f055";
-      font-family: 'Font Awesome 5 Free';
-      font-weight: bold;
-      font-size: 25px;
-      text-align: center;
-      display: block;
-      color: #0b540b;
-      position: absolute;
-      top: calc(50% - 20px);
-      left: calc(50% - 12px); }
+  .calendar td:not(.dis) {
+    background: #cee7ff;
+    border-radius: 10px; }
+    .calendar td:not(.dis):hover {
+      background: #87C4FF;
+      cursor: pointer;
+      position: relative; }
+      .calendar td:not(.dis):hover:after {
+        content: "\f055";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: bold;
+        font-size: 25px;
+        text-align: center;
+        display: block;
+        color: #0C5AA6;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: calc(50% - 12px); }
 
 td p {
   text-align: right;
@@ -153,7 +192,7 @@ span.pending {
 
 #about-consultation {
   font-size: 14px;
-  padding-top: 50px; }
+  padding: 25px 15px 0 0; }
 
 .shedule {
   position: absolute;
@@ -175,3 +214,21 @@ span.pending {
     top: 20px;
     border: 10px solid transparent;
     border-right: 10px solid #2594ff; }
+
+.progress-bar {
+  background: #2594ff; }
+
+.progress {
+  margin-bottom: 15px; }
+
+.form-item {
+  margin-bottom: 15px; }
+  .form-item b {
+    display: block;
+    margin-bottom: 5px; }
+  .form-item.lb label {
+    display: block; }
+  .form-item input[type=checkbox], .form-item input[type=radio] {
+    margin-right: 2px; }
+  .form-item label {
+    margin-right: 10px; }

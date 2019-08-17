@@ -1,3 +1,4 @@
+
 .nav
 	ul
 		-webkit-padding-start: 0
@@ -17,29 +18,69 @@
 .thank
 	margin-top: 45px
 	margin-bottom: 45px
+	.intro
+		// margin-left: 15px
+		margin-top: 5px
+		// font-size: 18px
+		// text-align: justify
+		p 
+			// text-indent: 15px
+			line-height: 20px
+			margin-bottom: 10px
+	.flex
+		// justify-content: center
+h1
+	color: #2594ff
+	margin-bottom: 25px
 .what-next
 	margin-top: 45px
-.about, .next, .count
+.about, .next, .count, .thank
 	p 
 		margin: 0
 .rel
 	position: relative
 #about-us
-	margin-left: 5%
-	margin-top: -10px
-
+	// margin-left: 5%
+	// margin-top: -10px
+	border-left: 4px solid #2594ff
+	padding-left: 15px
+	p 
+		font-style: italic
+		font-weight: bold
+.about-flex
+	justify-content: space-between
+	margin-bottom: 50px
+	margin-top: 50px
+	margin: 50px 0
+.flex-around
+	justify-content: space-between
+	align-items: center
+.team
+	width: 150px
 .flex
 	display: flex
-.count
+#intime
+	// margin-right: 15px
 	background: #eee
+	padding: 25px 10px
+	h3
+		font-size: 21px
+		font-weight: bold
+.count
+	background: #cee7ff
 	// padding: 15px
+	border-radius: 10px
 	text-align: center
-	margin-left: 5%
+	// margin-right: 5%
+	.head, .footer
+		color: #04284c
+	.head
+		border-right-top-radius: 4px
 	.head, .body, .footer
 		padding: 5px 10px
 		font-weight: bold
- 	.head
-		border-bottom: 1px solid #ddd 
+	.head, .body
+		border-bottom: 1px solid #aad5ff 
 	.body
 		overflow: hidden
 		height: 70px
@@ -49,7 +90,7 @@
 			line-height: 1
 			font-weight: normal
 		.start 
-			margin-top: -34px
+			margin-top: -46px
 		.end
 			margin-bottom: -9px
 		.end,	.start 
@@ -59,7 +100,9 @@
 	position: relative
 	background: #eee
 	display: inline-block
+	display: none
 	padding: 25px 35px
+	margin: 50px 100px 25px 50px
 	&:before
 		content: ""
 		background: url('../img/arrow.png')
@@ -67,11 +110,11 @@
 		height: 170px
 		display: block
 		position: absolute
-		left: -40px
-		bottom: -95px
-		transform: rotate(30deg) scale(.5)
+		right: 0px
+		bottom: -65px
+		transform: rotate(-45deg) scale(-1, 1)
 	&:after
-		content: ""
+		// content: ""
 		background: url('../img/arrow.png')
 		width: 40px
 		height: 170px
@@ -83,12 +126,12 @@
 		transform: rotate(100deg) scale(1,-1)
 
 .calendar
-	margin-top: 25px
+	// margin-top: 25px
 	border-collapse: separate
 	border-spacing: 3px
 	border-radius: 10px
 	th,td 
-		min-width: 60px
+		min-width: 50px
 		height: 50px
 		padding: 5px
 		position: relative
@@ -104,22 +147,24 @@
 	td.dis 
 		background: #ddd
 		border-radius: 10px
-	td:not(.dis):hover
-		background: #c1ffbd
-		cursor: pointer
+	td:not(.dis)
+		background: #cee7ff
 		border-radius: 10px
-		position: relative
-		&:after 
-			content: "\f055"
-			font-family: 'Font Awesome 5 Free'
-			font-weight: bold
-			font-size: 25px
-			text-align: center
-			display: block
-			color: #0b540b
-			position: absolute
-			top: calc(50% - 20px)
-			left: calc(50% - 12px)
+		&:hover
+			background: #87C4FF
+			cursor: pointer
+			position: relative		
+			&:after 
+				content: "\f055"
+				font-family: 'Font Awesome 5 Free'
+				font-weight: bold
+				font-size: 25px
+				text-align: center
+				display: block
+				color: #0C5AA6
+				position: absolute
+				top: calc(50% - 20px)
+				left: calc(50% - 12px)
 td p
 	text-align: right
 	margin: 0
@@ -154,7 +199,7 @@ span.pending
 		height: 10px
 #about-consultation
 	font-size: 14px
-	padding-top: 50px
+	padding: 25px 15px 0 0
 .shedule
 	position: absolute
 	width: 100%
@@ -175,4 +220,19 @@ $green: #2594ff
 		top: 20px
 		border: 10px solid transparent
 		border-right: 10px solid $green
-	 
+.progress-bar
+	background: #2594ff
+.progress
+	margin-bottom: 15px
+.form-item
+	margin-bottom: 15px
+	b
+		display: block
+		margin-bottom: 5px
+	&.lb 
+		label 
+			display: block
+	input[type=checkbox], input[type=radio]
+		margin-right: 2px
+	label
+		margin-right: 10px
