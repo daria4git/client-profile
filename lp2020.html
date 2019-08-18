@@ -5,163 +5,314 @@
 	<title>LP index</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="css/owl.carousel.min.css" rel="stylesheet"> 
+	<link href="css/owl.theme.default.css" rel="stylesheet"> 
 	<link href="css/all.css" rel="stylesheet"> 
 	<link rel="stylesheet" href="css/lp2020.css">
+	<script>
+		var clientsEmail = 'example@mail.com';
+	</script>
 </head>
 <body>
 	
 <div class="container">
 	<div class="row nav">
 		<div class="col-8">
-			<ul>
-				<li><a href="#">Кто мы</a> </li>
+			<button type="button" class="btn fas" id="open-mob"></button>
+			<ul class="my-menu">
 				<li><a href="#">Консультация</a></li>
-				<li><a href="#">Ваши вопросы</a></li>
+				<li><a href="#">О нас</a> </li>
 				<li><a href="#">Отзывы</a> </li>
 			</ul>
 		</div>
-		<div class="col-4 text-right">
+		<div class="col-4 text-right rel">
+			<a href="#" id="open-menu"> (044) 333-60-04</a>
 			<ul class="tels">
-				<li class="open"><a href="#">(044)333-60-04</a> </li>
-				<li class="not"><a href="#">(067)333-60-04</a> </li>
-				<li class="not"><a href="#">(050)333-60-04</a> </li>
+				<li class="open"><a href="#"><i class="fas fa-phone-square-alt"></i> (044) 333-60-04</a> </li>
+				<li class="not"> <a href="#"><i class="fab fa-viber"></i> <i class="fab fa-telegram"></i> (067) 333-60-04</a> </li>
+				<li class="not"><a href="#"><i class="fas fa-mobile-alt"></i> (050) 333-60-04</a> </li>
 			</ul>
 		</div>
-	</div>
-	<div class="row thank">
-		<div class="col-6 offset-3 text-center">
-			<h1>Спасибо!</h1>
-			<p>Теперь мы знаем, что ты  будешь учиться в 11 классе и спешим тебе сообщить, что начинать готовиться к поступлению в зарубежные вузы<b> уже нужно сейчас</b></p>
-		</div>
-	</div>
 </div>
-<div class="container-fluid">
-	<div class="row rel">
-		<div class="col-6">
-			<div class="flex">
-				<img src="img/team-lite2.png" alt="">
-			<div id="about-us" class="about">
 
-				<h3>Кто мы?</h3>
-				<p>Твой помощник, личный консультант и,</p><p> в определенный момент, первый этап</p><p> приемной комиссии зарубежных вузов!</p>
-			</div>
-			</div>
-		</div>
-		<div class="col-6" >
-			<div class="flex">
-			<div id="intime" class="about">
-				<h3>Как мы все успеваем?</h3>
-				<p>Все просто - мы не отправляем студентов “пачками”,</p><p> а работаем с каждым клиентом индивидуально.</p><p> Поэтому поторопись, количество мест ограничено!</p>
-			</div>
-			<div class="count">
-				<p class="head">ОСТАЛОСЬ</p>
-				<div class="body">
-					<p class="start" id="count-start">26</p>
-					<p class="end" id="count-end">27</p>
+	<div class="row first-screen">
+		<div class=" col-12 col-md-6">
+			<div class="thank">
+				<h1>Спасибо!</h1>
+				<div class="intro"> 
+					<p>Теперь мы знаем, что ты  будешь учиться в 11 классе и спешим тебе сообщить, что начинать готовиться к поступлению в зарубежные вузы<b> уже нужно сейчас</b></p>
+					<p>Еженедельно ты будешь получать общие советы из разарботанного нами <b>Календаря студента</b> - схемы зачисления, которую мы создаем для каждого студента индивидуально
+					</p>
+					<p>Есть вопросы на счет обучения за рубежом? Или хочешь узнать подробнее про наш календарь? Записывайся к нам на бесплатную консультацию!</p>
 				</div>
-				<p class="footer">МЕСТ</p>
 			</div>
 		</div>
-		</div>
-	</div>
-</div>
-<div class="container what-next">
-	<div class="row">
-		<div class="col-6 offset-1">
-			<div class="next">
-				<h3>Что дальше?</h3>
-				<p>Мы будем отправлять тебе полезную информацию на email,</p>  <p> А если у тебя уже есть вопросы - записывайся на бесплатную консультацию:</p>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container-fluid">
-	<div class="row rel">
-		<div class="col-4">
-			<table class="calendar" id="calendar">
-				<tr><th>ПН</th> <th>ВТ</th> <th>СР</th> <th>ЧТ</th> <th>ПТ</th> <th>СБ,ВС</th> </tr>
-				<tr>
-					<td class="dis"><span class="date">19</span></td>
-					<td><span class="date">20</span></td>
-					<td><span class="date">21</span>
-					 	<p><span class="ok"></span></p>
-					  <p><span class="pending"></span>
-					  </p>
-					</td>
-					<td><span class="date">22</span> 
+		<div class=" col-12 col-md-5 offset-md-1 text-right ">
+			<div class="for-table rel">
+				<p class="title"><b>ЗАПИСЬ НА БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ</b></p>
+				<table class="calendar" id="calendar">
+					<tr><th>ПН</th> <th>ВТ</th> <th>СР</th> <th>ЧТ</th> <th>ПТ</th>  <th>Сб, Вс</th> </tr>
+					<tr>
+						<td class="dis"><span class="date">19</span></td>
+						<td><span class="date">20</span></td>
+						<td><span class="date">21</span>
+						 	<p><span class="ok"></span></p>
+						  <p><span class="pending"></span></p>
+						</td>
+						<td><span class="date">22</span> 
+								<p><span class="ok"></span></p>
+								<p><span class="ok"></span></p>
+						  <p><span class="pending"></span></p>
+						</td>
+						<td><span class="date">23</span>
 							<p><span class="ok"></span></p>
-							<p><span class="ok"></span></p>
-					  <p><span class="pending"></span>
-					</td>
-					<td><span class="date">23</span>
-						<p><span class="ok"></span></p>
-					</td>
-					<td class="dis"><span class="date">24, 25</span></td>
-				</tr>
-				<tr>
-					<td class="dis"><span class="date">26</span></td>
-					<td class="dis"><span class="date">27</span></td>
-					<td><span class="date">28</span></td>
-					<td><span class="date">29</span></td>
-					<td><span class="date">30</span></td>
-					<td class="dis"><span class="date">31,1</span></td>
-				</tr>
-				<tr>
-					<td><span class="date">2</span></td>
-					<td><span class="date">3</span></td>
-					<td><span class="date">4</span></td>
-					<td><span class="date">5</span></td>
-					<td><span class="date">6</span></td>
-					<td class="dis"><span class="date">7,8</span></td>
-				</tr>
-			</table>
-			<div class="shedule" id="pop">
-				<div class="corner">
-				<p>Загруженость дня: средняя</p>
-				<p>Доступные часы: 10-12, 14-18</p>
-					
+						</td>
+						<td class="dis"><span class="date">24,25</span></td>
+					</tr>
+					<tr>
+						<td class="dis"><span class="date">26</span></td>
+						<td class="dis"><span class="date">27</span></td>
+						<td><span class="date">28</span></td>
+						<td><span class="date">29</span></td>
+						<td><span class="date">30</span></td>
+						<td class="dis"><span class="date">31,1</span></td>
+					</tr>
+					<tr>
+						<td><span class="date">2</span></td>
+						<td><span class="date">3</span></td>
+						<td><span class="date">4</span></td>
+						<td><span class="date">5</span></td>
+						<td><span class="date">6</span></td>
+						<td class="dis"><span class="date">7,8</span></td>
+					</tr>
+				</table>
+				<div class="shedule" id="pop">
+					<div class="corner">
+						<p class="text-right"><i class="far fa-times-circle" id="close-pop"></i></p>
+						<p class="time">Занятое время: 10.00-12.00, 14.00-15.00, 14.00-15.00</p>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Как вас зовут">
+						</div>
+						<div class="form-group">
+							<input type="tel" class="form-control" placeholder="Ваш телефон">
+						</div>
+						<p class="flex"><span><b class="fas fa-calendar"></b> 22/08 </span><span><b class="fas fa-clock"></b>  уточняется</span><a href="#">Отправить</a></p>
+
+					</div>
 				</div>
-				
-			</div>
-			<div class="legend">
-				<p><span class="ok"></span>  назначенные консультации</p>
-				<p><span class="pending"></span>  неподтвержденные консультации</p>
-				<p><span class="dis-span"></span>  недоступные для записи дни (по запросу)</p>
-			</div>
-		</div>
-		<div class="col-4">
-			<div id="about-consultation">
-				<ul>
-					<li><b>Продолжительность:</b> 1 час</li>
-					<li><b>Стоимость:</b> бесплатно</li>
-					<li><b>Где:</b> в нашем офисе в Киеве или онлайн</li>
-					<li><b>Время</b> мы согласуем с вами по телефону</li>
-					<li><b>Для записи</b> выберите дату в календаре или позвоните нам по телефону</li>
-					
-					<li><b>После консультации</b> вы получите ответы на ваши вопросы и узнаете как мы можем быть вам полезны </li>
+				<ul id="about-consultation">
+					<li><p><b>Продолжительность:</b> 1 час</p></li>
+					<li><p><b>Стоимость:</b> бесплатно</p></li>
+					<li><p><b>Где:</b> в нашем офисе в Киеве или онлайн</p></li>
 				</ul>
-			</div>
+			</div> <!--for-table-->
+		</div>				
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row rel " id="about-us">
+		<div class="col-12 col-md-7 left" >
+			<div class="flex">
+				<div class="text">
+					<h3>Кто мы?</h3>
+					<p>Твой помощник, личный консультант и,</p><p> в определенный момент, первый этап</p><p> приемной комиссии зарубежных вузов!</p>
+				</div>
+				<img src="img/team-lite.svg" alt="" class="team">
+			</div>	
 		</div>
-		<div class="col-4">
-			<div id="questionnaire">
-				<p><b>Анкета</b> example@mail.com</p>
-				<div class="progress">
-				  <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+		<div class="col-12 col-md-5 right">
+			<div class="flex intime-flex">
+				<div id="intime">
+					<h3>Как мы все успеваем?</h3>
+					<p>Все просто - мы не отправляем студентов “пачками”,</p><p> а работаем <b>с каждым клиентом индивидуально</b>.</p><p> Поэтому поторопись, количество мест ограничено!</p>
 				</div>
-				<div class="form-item">
-					<label><input type="radio">Ученик </label>
-					<label><input type="radio">Родитель будущего студента </label>
+				<div class="count">
+					<p class="head">ОСТАЛОСЬ</p>
+					<div class="body">
+						<p class="start" id="count-start">26</p>
+						<p class="end" id="count-end">27</p>
+					</div>
+					<p class="footer">МЕСТ</p>
 				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
+<div class="wrap1">
+	<div class="container" id="app"><h5></h5>
+
+<div class="row"  id="questionnaire">
+	<div class="col-12 col-md-4">
+		<p><b>{{ email }}</b></p>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+		</div>
+		<div class="form-item lb">
+			<b>Кто ты:</b>
+			<label class="custom">Ученик (студент)
+				<input type="radio" name="role">
+				<span class="checkmark radio"></span>
+			</label>
+			<label class="custom">Родитель будущего студента
+				<input type="radio" name="role">
+				<span class="checkmark radio"></span>
+			</label>
+		</div>
+		<div class="form-item countries">
+			<b>Какие страны тебя интересуют</b>
+			<label class="custom">Великобритания
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom">Канада
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom">США
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom">Нидерланды
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom">Др. страны Европы
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			
+		</div>				
+	</div>
+	<div class="col-12 col-md-4">
+		<div class="form-item">
+			<b>Твой бюджет на обучение:</b>
+			<input type="text" id="amount" class="for-val" readonly >
+			<div id="slider-range"></div>
+
+			
+			<label class="custom">Меня интересует только бесплатное обучение
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom">Я незнаю
+				<input type="checkbox" name="countries">
+				<span class="checkmark"></span>
+			</label>
+		</div>
+		<div class="form-item">
+			<b>На каком языке ты хочешь учиться:</b>
+
+			<label class="custom">Английский
+				<input type="radio" name="lang"  v-model="lang" value="0">
+				<span class="checkmark radio"></span>
+			</label>
+
+			<label class="custom">Другой (выбери из списка)
+				<input type="radio" name="lang"  v-model="lang" value="1">
+				<span class="checkmark radio"></span>
+			</label>
+			
+			<div>
+				<select class="form-control" v-if="lang !== '0'" v-model="lang2">
+					<option value="0">Испанский</option>
+					<option value="1">Итальянский</option>
+					<option value="2">Немецкий</option>
+					<option value="3">Польский</option>
+					<option value="4">Чешский</option>
+					<option value="5">Нет в списке</option>
+				</select>
 			</div>
 		</div>
 	</div>
-</div>		
+	<div class="col-12 col-md-4">
+		<div class="form-item">
+			<b>Ты уже сдавал(-ла) тест по английскому</b>
 
+			<label class="custom">Да
+				<input type="radio" 
+							name="pass" 
+							v-model="pass" 
+							value="0"
+							@change="setSlider">
+				<span class="checkmark radio"></span>
+			</label>
+
+			<label class="custom">Нет
+				<input type="radio" name="pass" v-model="pass" value="1">  
+				<span class="checkmark radio"></span>
+			</label>
+			<div  v-if="pass ==='1' && lang === '0'">
+				<p  class="blue">Примерный уровень английского</p>
+				<select class="form-control">
+					<option value="0">Elementary</option>
+					<option value="0">Begginer</option>
+					<option value="0">Pre-Intermediate</option>
+					<option value="0">Intermediate</option>
+					<option value="0">Upper-Intermediate</option>
+					<option value="0">Advanced</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-item">
+
+				<div class="tests">
+					<label class="custom">IELTS
+						<input type="radio" name="test-type" checked="">
+						<span class="checkmark radio"></span>
+					</label>
+					<label class="custom">TOEFL
+						<input type="radio" name="test-type">  
+						<span class="checkmark radio"></span>
+					</label>
+				</div>
+
+			<div class="block sldr" v-if="pass ==='0' && lang === '0'">
+				<label for="amount2"  class="blue amount2">Уровень английского :</label> <input type="text" id="amount2" class="for-val" readonly >
+				<div id="slider-range-max"></div>
+			</div><br>
+			<button class="btn btn-info btn-block" type="button">Отправить</button>
+			</div>	
+		</div>
+	</div>
+</div>
+</div>
+<div class="wrap">
+<div class="container">
+	<!-- <h3>О нас</h3> -->
+	<div class="row edu-items">
+		<div class="col-12 col-lg-6">
+			<div class="edu-item">
+				<p class="title"> EDUSTEPS В ЦИФРАХ </p>
+				<p class="text">Нашей компании 4 года, а наши консультанты работают в этой сфере уже 11 лет. На сегодняшний день, услугами EDUSTEPS воспользовалось 114 студентов. Они получают высшее образование в престижных университетах и колледжах Канады, США, Великобритании, Испании, Швейцарии и других странах Европы. 8-ми студентам мы помогли получить скидки на обучение в американских университетах. Общая сумма стипендий, которые получили наши студенты в прошлом году составила 73 000 долларов США.</p>
+			</div>
+
+			<div class="grey">
+				<p class="title">В какие университеты мы зачисляем</p>
+				<p class="text">Наш список университетов-партнеров постоянно увеличивается, многие из них мы посещали лично. Сегодня это около 200 учебынх заведений стран Европы и Америки. Мы работаем только с теми университетами и колледжами, которые имеют аккредитацию и дружественны к международным студентам - вам не стоит переживать, что вуз не выйдет с вами на связь или после окончания обучения не выдаст вам диплом:)</p>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
 <br>
-<br>
-<br>
-<br>
-<br>
+<div class="container reviews">
+	<h3 class="text-center">Отзывы наших клиентов</h3>
+	<div class="row">
+		<div class="col-12 col-lg-6 offset-lg-3 rel">
+			<div class="owl-carousel owl-theme text-center">
+			 <div><img src="img/reviews/review1.png" alt=""></div>
+			 <div><img src="img/reviews/review1_1.png" alt=""></div>
+			 <div><img src="img/reviews/review4.png" alt=""></div>
+			 <div><img src="img/reviews/review5.png" alt=""></div>
+			 <div><img src="img/reviews/review6-1.png" alt=""></div>
+			 <div><img src="img/reviews/review7.png" alt=""></div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -169,17 +320,38 @@
   crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/owl.carousel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> 
-<!-- <script src="js/lp.js"></script> -->
+<script src="js/lp2020.js"></script>
 <script>
+	$(document).ready(function(){
+  $('.owl-carousel').owlCarousel({
+  	nav: true,
+  	loop: true,
+  	navElement:"span",
+		navText:[" <span class='fa fa-angle-left'></span> "," <span class='fa fa-angle-right'></span> "],
+  	items: 1
+  });
+});
 	$(document).ready(function(){
 		// console.log('1')
 		$('#calendar td:not(.dis)').click(function(){
 			console.log('ok');
 			console.log();
 			var coords = $(this).position();
-			var left = coords.left+50;
-			$('#pop').css({'top':coords.top+'px', 'left': left+'px'})
+			var left = coords.left-300;
+			$('#pop').css({'top':coords.top+'px', 'left': left+'px'});
+			$('#pop').fadeIn()
+		});
+		$('#open-menu').click(function(){
+			$('.tels').toggleClass('in')
+		});
+		$('#open-mob').click(function(){
+			$(this).toggleClass('in');
+			$('.my-menu').toggleClass('in')
+		});
+		$('.for-table').on('click','#close-pop',function(){
+			$('#pop').fadeOut()
 		})
 	})
 	window.onscroll = function() {
@@ -187,8 +359,8 @@
 
 		var end = $('#count-end');
 
-		$(start).css({'margin-top': '-20px'})
-		$(end).css({'margin-top': '-15px!important'})
+		$(start).css({'margin-top': '-34px'})
+		$(end).css({'margin-top': '-9px!important'})
 	}
 </script>
 </body>
