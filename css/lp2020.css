@@ -12,6 +12,13 @@ p {
   display: none; }
 
 .nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9999999;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
   padding: 15px 0; }
   .nav ul {
     -webkit-padding-start: 0; }
@@ -56,6 +63,7 @@ p {
     border-top: 5px solid #2594ff; }
 
 .first-screen {
+  padding-top: 45px;
   margin-top: 45px; }
   .first-screen h1 {
     color: #2594ff;
@@ -81,6 +89,12 @@ p {
     #about-us .text p {
       font-style: italic;
       font-weight: bold; }
+  #about-us img.super {
+    width: 30px;
+    transform: rotate(-5deg);
+    margin-top: -15px; }
+  #about-us h3, #about-us img.super {
+    display: inline-block; }
 
 .intime-flex {
   margin-top: 25px;
@@ -96,10 +110,25 @@ p {
 #intime {
   background: #eee;
   padding: 25px;
-  font-size: 14px; }
+  font-size: 14px;
+  position: relative; }
+  #intime:after {
+    content: ""; }
   #intime h3 {
     font-size: 18px;
     font-weight: bold; }
+  #intime img.time {
+    width: 44px;
+    transform: rotate(5deg);
+    margin-top: -15px; }
+  #intime h3, #intime img.time {
+    display: inline-block; }
+  #intime .arrow {
+    position: absolute;
+    width: 100px;
+    right: 0;
+    transform: rotate(-150deg) scale(-1, 1);
+    bottom: -17px; }
 
 .count {
   background: #cee7ff;
@@ -141,6 +170,46 @@ p {
   clear: both;
   display: table; }
 
+.legenda {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%; }
+  .legenda p {
+    margin-right: 10px;
+    font-size: 12px; }
+  .legenda .dis {
+    color: #ddd; }
+
+.lite {
+  font-size: 12px; }
+  .lite i {
+    color: #ddd;
+    font-size: 10px; }
+
+@keyframes infinite-spinning {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+.calendar:not(.finished).loading {
+  position: relative;
+  background: #eee; }
+  .calendar:not(.finished).loading tr {
+    visibility: hidden; }
+  .calendar:not(.finished).loading:after {
+    content: "\f51f";
+    color: #2594ff;
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 0;
+    top: 50%;
+    left: calc(50% - 30px);
+    position: absolute;
+    animation: infinite-spinning 3s infinite; }
+
 .calendar {
   border-collapse: separate;
   border-spacing: 3px;
@@ -170,9 +239,10 @@ p {
       cursor: pointer;
       position: relative; }
       .calendar td:not(.dis):hover:after {
-        content: "\f055";
+        content: "\f271";
         font-family: 'Font Awesome 5 Free';
-        font-weight: bold;
+        font-weight: 100;
+        background: #87C4FF;
         font-size: 25px;
         text-align: center;
         display: block;
@@ -427,15 +497,52 @@ span.pending {
   border-radius: 50%;
   background: white; }
 
+.thank-msg {
+  color: #2594ff;
+  font-size: 18px; }
+
+.custom.disabled {
+  color: #adadad; }
+  .custom.disabled .checkmark {
+    opacity: .5; }
+
 .countries .custom, .tests .custom {
   display: inline-block; }
 
 .tests {
   text-align: right; }
 
+#our-contacts {
+  margin-top: 25px;
+  padding-top: 25px;
+  margin-bottom: 25px;
+  border-top: 1px solid #ddd; }
+  #our-contacts p:not(.first) {
+    padding-left: 16px; }
+  #our-contacts ul {
+    list-style-type: none;
+    text-align: center; }
+    #our-contacts ul a {
+      color: #333;
+      font-weight: bold; }
+
+.for-logo {
+  margin-bottom: 25px; }
+
+.logo {
+  font-size: 18px; }
+  .logo span {
+    color: #2594ff; }
+
+.text-center {
+  text-align: center; }
+
 @media only screen and (min-width: 767px) and (max-width: 1300px) {
   .intime-flex {
     flex-flow: column; }
+  #intime .arrow {
+    transform: rotate(87deg);
+    width: 50px; }
   .count {
     margin-top: 5px;
     background: none;
@@ -459,6 +566,8 @@ span.pending {
 @media (max-width: 1024px) {
   #about-us .text p, #intime p {
     display: inline; }
+  .divider {
+    display: block; }
   .edu-item {
     background: rgba(255, 255, 255, 0.7); } }
 

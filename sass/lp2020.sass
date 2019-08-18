@@ -8,6 +8,14 @@ p
 #open-mob
 	display: none
 .nav
+	position: fixed
+	// width: 100%
+	left: 0
+	right: 0
+	top: 0
+	z-index: 9999999
+	background: #fff
+	border-bottom: 1px solid #ddd
 	padding: 15px 0
 	ul
 		-webkit-padding-start: 0
@@ -52,6 +60,7 @@ p
 		border: 5px solid transparent
 		border-top: 5px solid #2594ff
 .first-screen
+	padding-top: 45px
 	margin-top: 45px
 	// margin-bottom: 25px
 	h1
@@ -81,6 +90,12 @@ p
 		p 
 			font-style: italic
 			font-weight: bold
+	img.super 
+		width: 30px
+		transform: rotate(-5deg)
+		margin-top: -15px
+	h3, img.super 
+		display: inline-block
 
 .intime-flex
 	margin-top: 25px
@@ -95,9 +110,26 @@ p
 	background: #eee
 	padding: 25px
 	font-size: 14px
+	position: relative
+	&:after
+		content: ""
+
 	h3
 		font-size: 18px
 		font-weight: bold
+	img.time 
+		width: 44px
+		transform: rotate(5deg)
+		margin-top: -15px
+	h3, img.time 
+		display: inline-block
+		// position: absolute
+	.arrow
+		position: absolute
+		width: 100px
+		right: 0
+		transform: rotate(-150deg) scale(-1, 1)
+		bottom: -17px
 .count
 	background: #cee7ff
 	// padding: 15px
@@ -139,6 +171,45 @@ p
 	content: ""
 	clear: both
 	display: table
+.legenda
+	display: flex
+	align-items: flex-end
+	justify-content: flex-end
+	width: 100%
+	p 
+		margin-right: 10px
+		font-size: 12px
+	.dis 
+		color: #ddd
+.lite
+	// text-align: center
+	font-size: 12px
+	i 
+		color: #ddd
+		font-size: 10px
+@keyframes infinite-spinning
+		0%
+			transform: rotate(0deg)
+		100%
+			transform: rotate(360deg)
+
+.calendar:not(.finished).loading
+	position: relative			
+
+	background: #eee
+	tr
+		visibility: hidden
+	&:after
+		content: "\f51f"
+		color: #2594ff
+		font-family: "Font Awesome 5 Free"
+		font-weight: bold
+		font-size: 60px
+		line-height: 0
+		top: 50%
+		left: calc(50% - 30px)
+		position: absolute
+		animation: infinite-spinning 3s infinite
 .calendar
 	// margin-top: 25px
 	border-collapse: separate
@@ -173,9 +244,10 @@ p
 			cursor: pointer
 			position: relative		
 			&:after 
-				content: "\f055"
+				content: "\f271"
 				font-family: 'Font Awesome 5 Free'
-				font-weight: bold
+				font-weight: 100
+				background: #87C4FF
 				font-size: 25px
 				text-align: center
 				display: block
@@ -413,14 +485,45 @@ $green: #2594ff
 	height: 8px
 	border-radius: 50%
 	background: white
+.thank-msg
+	color: #2594ff
+	font-size: 18px
+.custom.disabled
+	color: #adadad 
+	.checkmark
+		opacity: .5
 .countries, .tests
 	.custom
 		display: inline-block
 .tests
 	text-align: right
+#our-contacts
+	margin-top: 25px
+	padding-top: 25px
+	margin-bottom: 25px
+	border-top: 1px solid #ddd
+	p:not(.first)
+		padding-left: 16px
+	ul
+		list-style-type: none
+		text-align: center
+		a 
+			color: #333
+			font-weight: bold
+.for-logo
+	margin-bottom: 25px
+.logo
+	font-size: 18px
+	span 
+		color: #2594ff
+.text-center
+	text-align: center
 @media only screen and (min-width: 767px) and (max-width: 1300px)
 	.intime-flex
 		flex-flow: column
+	#intime .arrow
+		transform: rotate(87deg)
+		width: 50px
 	.count 
 		margin-top: 5px
 		background: none 
@@ -442,6 +545,8 @@ $green: #2594ff
 @media (max-width:1024px)
 	#about-us .text p, #intime p
 		display: inline
+	.divider
+		display: block
 	.edu-item
 		background: rgba(255,255,255,0.7)
 
