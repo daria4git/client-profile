@@ -1,5 +1,14 @@
 
+.hide
+	display: none
+p 
+	margin: 0
+.rel
+	position: relative
+#open-mob
+	display: none
 .nav
+	padding: 15px 0
 	ul
 		-webkit-padding-start: 0
 		li 
@@ -7,17 +16,47 @@
 			display: inline-block
 			text-transform: uppercase
 			margin-right: 15px
-			padding: 10px 0
+			// padding: 10px 0
 			a
 				color: #000
 	.tels
-		li.not
-				display: none
-				&.show
-					display: block
-.thank
+		right: 0
+		display: inline-block
+		position: absolute
+		width: 175px
+		// display: none
+		height: 0
+		overflow: hidden
+		background: #fff
+		z-index: 999999
+		transition: all .3s
+		&.in 
+			height: 100px
+		li 
+			display: block
+			margin-bottom: 10px
+			a
+				color: #333
+			i 
+				color: #2594ff
+#open-menu
+	display: block
+	position: relative
+	margin-right: 25px
+	margin-bottom: 5px
+	&:after
+		content: ''
+		position: absolute
+		right: -20px
+		top: 10px
+		border: 5px solid transparent
+		border-top: 5px solid #2594ff
+.first-screen
 	margin-top: 45px
-	margin-bottom: 45px
+	// margin-bottom: 25px
+	h1
+		color: #2594ff
+		margin-bottom: 25px
 	.intro
 		// margin-left: 15px
 		margin-top: 5px
@@ -27,44 +66,37 @@
 			// text-indent: 15px
 			line-height: 20px
 			margin-bottom: 10px
+#about-us 
+	margin-bottom: 75px
+	.left
+		padding-left: 7.5%
 	.flex
-		// justify-content: center
-h1
-	color: #2594ff
-	margin-bottom: 25px
-.what-next
-	margin-top: 45px
-.about, .next, .count, .thank
-	p 
-		margin: 0
-.rel
-	position: relative
-#about-us
-	// margin-left: 5%
-	// margin-top: -10px
-	border-left: 4px solid #2594ff
-	padding-left: 15px
-	p 
-		font-style: italic
-		font-weight: bold
-.about-flex
-	justify-content: space-between
-	margin-bottom: 50px
-	margin-top: 50px
-	margin: 50px 0
-.flex-around
-	justify-content: space-between
+		justify-content: space-between
+	img 
+		align-self: flex-start	
+	.text
+		border-left: 4px solid #2594ff
+		padding-left: 15px
+		margin-top: 50px
+		p 
+			font-style: italic
+			font-weight: bold
+
+.intime-flex
+	margin-top: 25px
+	justify-content: space-around
 	align-items: center
 .team
-	width: 150px
+	width: 300px
 .flex
 	display: flex
 #intime
 	// margin-right: 15px
 	background: #eee
-	padding: 25px 10px
+	padding: 25px
+	font-size: 14px
 	h3
-		font-size: 21px
+		font-size: 18px
 		font-weight: bold
 .count
 	background: #cee7ff
@@ -95,41 +127,24 @@ h1
 			margin-bottom: -9px
 		.end,	.start 
 			transition: all .5s cubic-bezier(0.6, -0.28, 0.74, 0.05)
-.what-next .col-6
-.next
-	position: relative
-	background: #eee
-	display: inline-block
-	display: none
-	padding: 25px 35px
-	margin: 50px 100px 25px 50px
-	&:before
-		content: ""
-		background: url('../img/arrow.png')
-		width: 40px
-		height: 170px
-		display: block
-		position: absolute
-		right: 0px
-		bottom: -65px
-		transform: rotate(-45deg) scale(-1, 1)
-	&:after
-		// content: ""
-		background: url('../img/arrow.png')
-		width: 40px
-		height: 170px
-		display: block
-		position: absolute
-		right: -40px
-		// bottom: -45px
-		top: -25px
-		transform: rotate(100deg) scale(1,-1)
-
+.for-table
+	.title
+		color: grey
+		font-size: 14px
+		padding-left: 7px
+		padding-right: 7px
+		// border-bottom: 1px solid #ddd
+		display: inline-block
+.for-table:after
+	content: ""
+	clear: both
+	display: table
 .calendar
 	// margin-top: 25px
 	border-collapse: separate
 	border-spacing: 3px
 	border-radius: 10px
+	float: right
 	th,td 
 		min-width: 50px
 		height: 50px
@@ -137,7 +152,10 @@ h1
 		position: relative
 	th 
 		height: 25px
-		border-bottom: 1px solid #ddd
+		// border-top: 1px solid #ddd
+		// background: #fbfbfb
+		// border-top-right-radius: 10px
+		// border-top-left-radius: 10px
 	.date 
 		position: absolute
 		font-size: 12px
@@ -185,27 +203,42 @@ span.ok, span.pending
 		font-weight: bold
 span.pending
 	color: orange
-	// background: orange
-.legend
-	span
-		width: 25px
-		height: 5px
-	p 
-		margin: 0
-		font-style: italic
-		font-size: 14px
-	.dis-span
-		background: #b1b1b1
-		height: 10px
+
 #about-consultation
 	font-size: 14px
 	padding: 25px 15px 0 0
+	margin-left: 25px
+	display: inline-block
+	p
+		text-align: left
 .shedule
 	position: absolute
-	width: 100%
+	width: 300px
 	z-index: 99999
+	text-align: left
+	font-size: 14px
+	display: none
+	transition: top .3s
+	&.in 
+		display: block
 	p
 		margin: 0
+	.time
+		margin-bottom: 15px
+		padding-bottom: 10px
+		border-bottom: 1px solid #0c5aa6
+	a 
+		color: #000
+		font-size: 18px
+		font-weight: bold
+		margin-left: 5px
+		text-decoration: underline
+	.flex 
+		justify-content: space-between
+		align-items: center
+	.fa-times-circle
+		font-size: 14px
+		cursor: pointer
 $green: #2594ff
 .corner
 	background: $green
@@ -216,10 +249,10 @@ $green: #2594ff
 	&:after
 		content: ''
 		position: absolute
-		left: -20px
+		right: -20px
 		top: 20px
 		border: 10px solid transparent
-		border-right: 10px solid $green
+		border-left: 10px solid $green
 .progress-bar
 	background: #2594ff
 .progress
@@ -236,3 +269,271 @@ $green: #2594ff
 		margin-right: 2px
 	label
 		margin-right: 10px
+.for-val
+	border: 0
+	display: inline-block
+	background: none
+#amount2
+	width: 25px
+#amount2,.amount2
+	display: inline
+#slider-range
+	margin-bottom: 15px
+	.ui-widget-header
+		background: #2594ff
+#slider-range-max
+		background: #2594ff
+.btn-info
+	background: #2594ff
+.edu-items
+	justify-content: stretch
+	align-items: stretch
+	margin-bottom: 25px
+	margin-top: 25px
+	.edu-col
+		padding: 25px
+		margin: 0 15px
+.edu-item
+	position: relative
+	border: 4px solid #2594ff
+	padding: 25px
+	margin-top: 50px
+	.title
+		position: absolute
+		top: -18px
+		display: inline-block
+		padding: 0 10px
+		font-weight: bold
+		font-size: 18px
+		background: #e4f2ff
+		background: #fff
+.p0
+	padding: 0
+.grey
+	background: #eee
+	padding: 25px	
+	margin: 25px 0
+	// margin-right: 0px
+	.title
+		font-weight: bold
+		font-size: 18px
+		margin-bottom: 15px
+	&.lite
+		margin-left: 0
+		margin-top: 50px
+		display: none
+.wrap1
+	background: #f9f9f9
+#app
+	border-radius: 10px
+	// margin-top: 50px
+	padding: 25px 15px 10px
+	position: relative
+	// margin-bottom: 50px
+	&:before
+		content: "И последние настройки..."
+		position: absolute
+		top: -50px
+		font-size: 21px
+		font-weight: 600
+		color: #0C5AA6
+.wrap
+	background: url(../img/map.svg)
+	background-size: contain
+	background-repeat: no-repeat
+	background-position: 716px 0
+	padding: 0 0 25px
+.owl-carousel .owl-item img
+	width: auto
+	max-width: 100%
+	margin: auto
+.owl-theme .owl-nav .owl-prev, .owl-theme  .owl-nav .owl-next
+		position: absolute
+		top: 36%
+
+.reviews
+	margin-top: 25px
+	h3
+		margin-bottom: 25px
+.custom
+	display: block
+	position: relative
+	padding-left: 35px
+	margin-bottom: 12px
+	cursor: pointer
+	font-size: 16px
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+.custom input 
+	position: absolute
+	opacity: 0
+	cursor: pointer
+	height: 0
+	width: 0
+
+.checkmark
+	position: absolute
+	top: 0
+	left: 0
+	height: 25px
+	width: 25px
+	background-color: #eee
+	border: 1px solid #ddd
+	&.radio 
+		border-radius: 50%
+
+.custom:hover input ~ .checkmark
+	background-color: #ccc
+
+.custom input:checked ~ .checkmark
+	background-color: #2196F3
+.checkmark:after
+	content: ""
+	position: absolute
+	display: none
+.custom input:checked ~ .checkmark:after 
+	display: block
+.custom .checkmark:not(.radio):after
+	left: 9px
+	top: 5px
+	width: 5px
+	height: 10px
+	border: solid white
+	border-width: 0 3px 3px 0
+	-webkit-transform: rotate(45deg)
+	-ms-transform: rotate(45deg)
+	transform: rotate(45deg)
+.custom .checkmark.radio:after
+	top: 8px
+	left: 8px
+	width: 8px
+	height: 8px
+	border-radius: 50%
+	background: white
+.countries, .tests
+	.custom
+		display: inline-block
+.tests
+	text-align: right
+@media only screen and (min-width: 767px) and (max-width: 1300px)
+	.intime-flex
+		flex-flow: column
+	.count 
+		margin-top: 5px
+		background: none 
+		display: flex
+		.head, .footer 
+			padding-top: 15px
+		.head, .body, .footer 
+			display: inline-block
+		.head, .body
+			border: 0
+		.body
+			background: #cee7ff
+			height: 60px
+	.team 
+		width: 150px
+@media (max-width:1300px) 
+	.wrap
+		background-position: 533px 0
+@media (max-width:1024px)
+	#about-us .text p, #intime p
+		display: inline
+	.edu-item
+		background: rgba(255,255,255,0.7)
+
+	.thank
+		// background: red
+
+@media (max-width:768px)
+	#intime
+		margin-right: 25px
+	.first-screen
+		.text-right
+			text-align: center!important
+		.calendar
+			float: none
+			margin: auto
+	.owl-theme .owl-nav
+		display: none
+	.wrap
+		background-position: 45px -33px
+	.edu-item
+		background: rgba(255, 255, 255, 0.88)
+
+@media (max-width:480px)
+	#about-us .flex
+		flex-flow: column
+		justify-content: center
+		img
+			margin: auto
+	.count 
+		margin: 5px auto
+		background: none 
+		display: flex
+
+		.head, .footer 
+			padding-top: 15px
+		.head, .body, .footer 
+			display: inline-block
+		.head, .body
+			border: 0
+		.body
+			background: #cee7ff
+			height: 60px
+	#intime
+		margin: auto
+@media (max-width:540px)
+	#open-mob
+		display: block
+	.first-screen
+		padding-top: 40px
+	.nav ul.my-menu
+		// transform: translate(-140px, 0)
+		top: 50px
+		left: -200px
+		position: absolute
+		background: #fff
+		transition: all .3s
+		height: 100vh
+		border-right: 1px solid #ddd
+		li
+			z-index: 9999999
+			padding-left: 25px
+			margin-bottom: 15px
+		&.in 
+			// transform: translate(0, 0)
+			left: 0
+		li 
+			display: block
+	.nav
+		position: fixed
+		width: 100%
+		top: 0
+		z-index: 9999999
+		background: #fff
+		border-bottom: 1px solid #ddd
+		.col-8
+			-ms-flex:: 0 0 33.333333%
+			flex: 0 0 33.333333%
+	    max-width: 33.333333%
+		.col-4
+			-ms-flex: 0 0 66.666667%
+			flex: 0 0 66.666667%
+			max-width: 66.666667%
+	#open-mob
+		&:before
+			content: '\f0c9'
+			font-size: 21px
+		&.in:before
+			content: '\f00d'
+
+@media (min-width:910px)
+	.owl-theme 
+		.owl-nav .owl-prev
+			left: -15%
+		.owl-nav .owl-next
+			right: -15%
